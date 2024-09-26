@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:21:56 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/20 11:25:14 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/09/26 13:45:09 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 #define RED 0xFF0000FF
 # define TILE_SIZE 40
+# define H_S 1000
+# define W_S 1000
 # define FOV	60 * M_PI / 180 
 # define STEPS 10
 # define ROT 2

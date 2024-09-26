@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:18:10 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/20 11:35:24 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/09/26 13:31:26 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,32 +38,30 @@ bool	check_move(t_data *data, double new_x, double new_y)
 
 void	ft_mover(t_data *data, char move)
 {
-	double	new_x;
-	double	new_y;
+	t_vector pos;
 
-	new_x = 0;
-	new_y = 0;
+	ft_memset (&pos, 0, sizeof (pos));
 	if (move == 'D')
 	{
-		new_x = sin(data->player.angle) * STEPS * -1;
-		new_y = cos(data->player.angle) * STEPS;
+		pos.x = sin(data->player.angle) * STEPS * -1;
+		pos.y = cos(data->player.angle) * STEPS;
 	}
 	if (move == 'A')
 	{
-		new_x = sin(data->player.angle) * STEPS;
-		new_y = cos(data->player.angle) * STEPS * -1;
+		pos.x = sin(data->player.angle) * STEPS;
+		pos.y = cos(data->player.angle) * STEPS * -1;
 	}
 	if (move == 'S')
 	{
-		new_x = cos(data->player.angle) * STEPS * -1;
-		new_y = sin(data->player.angle) * STEPS * -1;
+		pos.x = cos(data->player.angle) * STEPS * -1;
+		pos.y = sin(data->player.angle) * STEPS * -1;
 	}
 	if (move == 'W')
 	{
-		new_x = cos(data->player.angle) * STEPS;
-		new_y = sin(data->player.angle) * STEPS;
+		pos.x = cos(data->player.angle) * STEPS;
+		pos.y = sin(data->player.angle) * STEPS;
 	}
-	check_move(data, new_x, new_y);
+	check_move(data, pos.x, pos.y);
 }
 
 void	ft_exit(t_data *data)
