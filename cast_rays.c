@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 16:17:41 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/20 11:36:20 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/09/28 11:55:08 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,12 @@ void	reset_img(t_data *data)
 	int	j;
 
 	i = 0;
-	while (i < data->width)
+	while (i < W_S)
 	{
 		j = 0;
-		while (j < data->height)
+		while (j < H_S)
 		{
-			if (check_pixel (i, j, data) == false)
-				mlx_put_pixel (data->img, i, j, 0);
+			put_pixel (data->img, i, j, 0);
 			j++;
 		}
 		i++;
@@ -102,21 +101,21 @@ void	reset_img(t_data *data)
 
 void	cast_rays(t_data *data)
 {
-	t_ray	ray[(int)data->width];
+	t_ray	ray[(int)W_S];
 	int		i;
 	double	angle;
 
 	i = 0;
 	data->ray = ray;
 	angle = data->player.angle - FOV / 2;
-	while (i < data->width)
+	while (i < W_S)
 	{
 		data->ray[i].angle = norm_angle (angle);
 		get_derictions (data, i);
 		inter_h (data, i);
 		inter_v (data, i);
 		wall_distance (data, i);
-		angle += FOV / data->width;
+		angle += FOV / W_S;
 		i++;
 	}
 	reset_img (data);

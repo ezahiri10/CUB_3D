@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:34:51 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/26 13:35:56 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/09/28 12:20:00 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	init_mlx(t_data *data)
 {
-	data->mlx = mlx_init (data->width, data->height, "CUB3", false);
-	data->img = mlx_new_image (data->mlx , data->width, data->height);
+	data->mlx = mlx_init (W_S, H_S, "CUB3", false);
+	data->img = mlx_new_image (data->mlx, W_S, H_S);
 	mlx_image_to_window (data->mlx, data->img, 0, 0);
 }
 
 void	load_wind(t_data *data)
 {
 	init_mlx (data);
-	render_map (data);
 	mlx_loop_hook (data->mlx, move_player, data);
 	mlx_loop (data->mlx);
 }
 // mlx_terminate (data->mlx);
+	// render_map (data);

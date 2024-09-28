@@ -6,38 +6,44 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 17:55:21 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/11 13:06:52 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/09/28 12:34:41 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void put_pixel(mlx_image_t *img, double x, double y, double color , t_data *data)
+void	put_pixel(mlx_image_t *img, double x, double y, double color)
 {
-    if (x < 0 || x >= data->width)
-        return ;
-    if (y < 0 || y >= data->height)
-        return ;
-    mlx_put_pixel (img, x, y, color);
+	if (x < 0 || x >= W_S)
+		return ;
+	if (y < 0 || y >= H_S)
+		return ;
+	mlx_put_pixel (img, x, y, color);
 }
 
-void DDA(double X0, double Y0, double X1, double Y1, t_data *data)
+void	dda(t_data *data, t_vector init_p, t_vector finl_p)
 {
-    double dx = X1 - X0; 
-    double dy = Y1 - Y0; 
+	t_vector	dpos;
+	t_vector	posinc;
+	double		steps;
+	int			i;
 
-
-    double steps = fabs(dx) > fabs(dy) ? fabs(dx) : fabs(dy); 
-    double Xinc = dx / (double)steps; 
-    double Yinc = dy / (double)steps; 
-    double X = X0;
-    double Y = Y0;
-    for (double i = 0; i <= steps; i++) 
-    {
-            if (X < 0 || X >= data->width || (Y < 0 || Y >= data->height))
-                break ;
-            put_pixel(data->img, X , Y, rgb (0, 0, 0, 255), data);
-            X += Xinc;
-            Y += Yinc;
-    }
+	i = 0;
+	dpos.x = finl_p.x - init_p.x;
+	dpos.y = finl_p.y - init_p.y;
+	if (fabs(dpos.x) > fabs(dpos.y))
+		steps = fabs(dpos.x);
+	else
+		steps = fabs(dpos.y);
+	posinc.x = dpos.x / steps;
+	posinc.y = dpos.y / steps;
+	while (i <= steps)
+	{
+		if (init_p.x < 0 || init_p.x >= W_S || init_p.y < 0 || init_p.y >= H_S)
+			break ;
+		put_pixel(data->img, init_p.x, init_p.y, rgb (0, 0, 0, 255));
+		init_p.x += posinc.x;
+		init_p.y += posinc.y;
+		i++;
+	}
 }

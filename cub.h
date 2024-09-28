@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:21:56 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/26 13:45:09 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/09/28 12:37:14 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 #define RED 0xFF0000FF
 # define TILE_SIZE 40
 # define H_S 1000
-# define W_S 1000
+# define W_S 100
 # define FOV	60 * M_PI / 180 
 # define STEPS 10
 # define ROT 2
@@ -94,7 +94,7 @@ void		render_map(t_data *data);
 void		move_player(void *ptr);
 double		norm_angle(double angle);
 void		cast_rays(t_data *data);
-void		DDA(double X0, double Y0, double X1, double Y1, t_data *data);
+void		dda(t_data *data, t_vector init_p, t_vector finl_p);
 double		calcul_dis(t_data *data, t_vector pos);
 void 		render_wall (t_data *data);
 bool		check_pixel(double x, double y, t_data *data);
@@ -103,6 +103,8 @@ void		first_point_v(t_data *data, int i);
 void		get_derictions(t_data *data, int i);
 bool		check_wall(t_data *data, double x, double y);
 void		draw_3d(t_data *data);
+uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
+void		put_pixel(mlx_image_t *img, double x, double y, double color);
 uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
 
 

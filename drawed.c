@@ -6,18 +6,11 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:40:36 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/20 11:31:42 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/09/28 12:21:22 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-void	put_mlx(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t color)
-{
-	if (x < 0 || y < 0)
-		return ;
-	mlx_put_pixel (img, x, y, color);
-}
 
 int	put_cercle(t_data *data)
 {
@@ -43,7 +36,7 @@ int	put_cercle(t_data *data)
 	return (0);
 }
 
-int	put_carre(t_data *data, int x, int y , uint32_t color)
+int	put_carre(t_data *data, int x, int y, uint32_t color)
 {
 	int	i;
 	int	j;

@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:03:00 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/20 11:46:19 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/09/28 11:54:55 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int	main(int ac, char **av)
 	load_wind (&data);
 	return (0);
 }
-	// if (ac != 2)
 	// {
+	// if (ac != 2)
 	// 	ft_putendl_fd ("invalid input", 2);
 	// 	return (1);
 	// }

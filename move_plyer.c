@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:18:10 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/26 13:31:26 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/09/28 12:19:06 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ bool	check_move(t_data *data, double new_x, double new_y)
 	double		alpha;
 	int			i;
 
+	i = 0;
 	pos.x = new_x + data->player.pos.x;
 	pos.y = new_y + data->player.pos.y;
 	rest = TILE_SIZE / 10;
-	i = 0;
 	while (i < 360)
 	{
 		alpha = i * M_PI / 180;
@@ -38,7 +38,7 @@ bool	check_move(t_data *data, double new_x, double new_y)
 
 void	ft_mover(t_data *data, char move)
 {
-	t_vector pos;
+	t_vector	pos;
 
 	ft_memset (&pos, 0, sizeof (pos));
 	if (move == 'D')
@@ -99,6 +99,7 @@ void	move_player(void *ptr)
 		data->player.angle = norm_angle(data->player.angle - M_PI / 180);
 	if (mlx_is_key_down (data->mlx, MLX_KEY_RIGHT))
 		data->player.angle = norm_angle(data->player.angle + M_PI / 180);
-	render_map (data);
 	cast_rays (data);
 }
+
+	// render_map (data);

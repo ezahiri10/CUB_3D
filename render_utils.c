@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 16:22:01 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/12 10:42:51 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/09/28 12:35:58 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@ double	calcul_dis(t_data *data, t_vector pos)
 	return (dis);
 }
 
-bool	check_pixel(double x, double y, t_data *data)
-{
-	if (x < 0 || y < 0 || x >= data->width || y >= data->height)
-		return (true);
-	return (false);
-}
-
 void	get_derictions(t_data *data, int i)
 {
 	double	angle;
@@ -58,4 +51,25 @@ void	get_derictions(t_data *data, int i)
 		data->ray[i].left_right = 'l';
 	else
 		data->ray[i].left_right = 'r';
+}
+
+uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y)
+{
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+	uint8_t	a;
+	int		index;
+
+	if (x >= 0 && (uint32_t)x < texture->width
+		&& y >= 0 && (uint32_t)y < texture->height)
+	{
+		index = (y * texture->width + x) * 4;
+		r = texture->pixels[index];
+		g = texture->pixels[index + 1];
+		b = texture->pixels[index + 2];
+		a = texture->pixels[index + 3];
+		return (r << 24 | g << 16 | b << 8 | a);
+	}
+	return (0x000000FF);
 }
