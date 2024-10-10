@@ -1,9 +1,9 @@
 CC = cc
 
-DIRMLX = /Users/$(USER)/libmlx42.a
+DIRMLX = /Users/$(USER)/Desktop/CUB_3D/libmlx42.a
 
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 RM = rm -f
 
@@ -11,10 +11,14 @@ NAME = Cub3D
 
 LIBFT = libft/libft.a
 
-MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw $(LIBFT) $(DIRMLX) -fsanitize=address -g
+MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" $(LIBFT) $(DIRMLX) #-fsanitize=address -g
 
 SRC = cub.c render_utils.c load_wind.c drawed.c  move_plyer.c cast_rays.c dda.c \
-		render_wall.c first_point.c draw_3d.c  
+		render_wall.c first_point.c draw_3d.c  \
+		parsing/parsing.c \
+		parsing/get_line.c \
+		parsing/get_line_utils.c \
+		parsing/ft_divide.c 
 
 OBJ = $(SRC:.c=.o)
 

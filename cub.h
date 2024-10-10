@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:21:56 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/28 12:37:14 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/10/08 14:37:29 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -21,12 +25,13 @@
 # include <unistd.h>
 # include <math.h>
 # include <fcntl.h>
-# include "/Users/ezahiri/.MLX42.h"
+# include "/Users/sel-hasn/Desktop/CUB_3D/MLX42/include/MLX42/MLX42.h"
+
 
 #define RED 0xFF0000FF
 # define TILE_SIZE 40
 # define H_S 1000
-# define W_S 100
+# define W_S 1000
 # define FOV	60 * M_PI / 180 
 # define STEPS 10
 # define ROT 2
@@ -80,11 +85,15 @@ typedef struct s_data
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	mlx_texture_t	**texture;
+	char			*no_texture;
+	char			*so_texture;
+	char			*we_texture;
+	char			*ea_texture;
 	uint32_t 		*txt;
 	t_ray			*ray;
 	t_player		player;
 	double			width;
-	double			height;	
+	double			height;
 	t_map			map;
 }				t_data;
 
@@ -107,5 +116,20 @@ uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
 void		put_pixel(mlx_image_t *img, double x, double y, double color);
 uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
 
+//get_line
+
+char	*get_line(int fd);
+char	*line(char *s);
+char	*rest_of_str(char *s);
+char	*read_line(char *s, int fd);
+size_t	ft_countlen(const char *s);
+int		ft_newline(char *s);
+
+//parsin
+
+int		check_valide_map_name(char *map_name);
+int		parsing(t_data *data, int fd);
+void	handl_error_missage(char *missage);
+char	**ft_divide(char const *s, char c);
 
 #endif 
