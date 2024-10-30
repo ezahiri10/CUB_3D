@@ -6,7 +6,7 @@
 /*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:10:49 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/10/28 20:36:36 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:56:31 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ int	get_all_map(t_data *data, int fd)
 	}
 	data->map.map = ft_divide(s, '\n');
 	if (tmp_line[ft_strlen(tmp_line) - 1] == '\n')
-		handl_error_missage("Error\nInvalid map");
+		handl_error_missage("Error\nInvalid map7");
 	close(fd);
 	return (0);
 }
 
-void	parse_map_member(t_data *data)
+void	parse_map_member_bonus(t_data *data)
 {
 	int	i;
 	int	elem;
@@ -78,13 +78,41 @@ void	parse_map_member(t_data *data)
 		{
 			if (elem != 6)
 				handl_error_missage("Error\nInvalid map member");
-			add_map(data, i);
+			add_map_bonus(data, i);
 			break ;
 		}
 	}
 }
 
-int	parsing(t_data *data, char *av)
+void	get_all_doors(t_data *d)
+{
+	int	i;
+	int	j;
+	int	t;
+
+	i = 0;
+	t = 0;
+	d->doors = ft_malloc(sizeof(t_door) * d->map.door_counter, 1);
+	ft_memset(d->doors, 0, sizeof(t_door));
+	while (d->map.map[i])
+	{
+		j = 0;
+		while (d->map.map[i][j])
+		{
+			if (d->map.map[i][j] == 'D')
+			{
+				d->doors[t].i = i;
+				d->doors[t].j = j;
+				d->doors[t].stat = 'C';
+				t++;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+int	parsing_bonus(t_data *data, char *av)
 {
 	int	fd;
 
@@ -94,10 +122,7 @@ int	parsing(t_data *data, char *av)
 	if (fd == -1)
 		return (ft_putstr_fd("Error\ncan't open the map", 2), -1);
 	get_all_map(data, fd);
-	parse_map_member(data);
-	printf("'%s'\n", data->no_texture);
-	printf("'%s'\n", data->so_texture);
-	printf("'%s'\n", data->we_texture);
-	printf("'%s'\n", data->ea_texture);
+	parse_map_member_bonus(data);
+	get_all_doors(data);
 	return (0);
 }

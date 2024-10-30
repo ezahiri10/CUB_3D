@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.c                                              :+:      :+:    :+:   */
+/*   cub_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:03:00 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/10/29 11:24:37 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/10/29 11:26:30 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	ft_memset (&data, 0, sizeof (t_data));
-	// if (parsing_bonus(&data, av[1]) == -1)
-	// 	return (1);
-	if (parsing(&data, av[1]) == -1)
+	if (parsing_bonus(&data, av[1]) == -1)
 		return (1);
+	// if (parsing(&data, av[1]) == -1)
+	// 	return (1);
 	init_data(&data);
 	load_wind (&data);
 	return (0);

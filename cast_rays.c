@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 16:17:41 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/28 11:55:08 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/10/27 18:36:53 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,14 @@ void	inter_h(t_data *data, int i)
 	while (1)
 	{
 		if (data->ray[i].up_down == 'u')
-			y_a -= 0.001;
+			y_a -= 1;
 		if (check_wall (data, data->ray[i].inter_h.x, y_a) == true)
 			break ;
+		if (check_door (data, data->ray[i].inter_h.x, y_a) == true)
+		{
+			data->ray[i].is_door_h = true;
+			break ;
+		}
 		data->ray[i].inter_h.x += data->ray[i].steps.x;
 		data->ray[i].inter_h.y += data->ray[i].steps.y;
 		y_a = data->ray[i].inter_h.y;
@@ -51,9 +56,14 @@ void	inter_v(t_data *data, int i)
 	while (1)
 	{
 		if (data->ray[i].left_right == 'l')
-			x_a -= 0.001;
+			x_a -= 1;
 		if (check_wall (data, x_a, data->ray[i].inter_v.y) == true)
 			break ;
+		if (check_door (data, x_a, data->ray[i].inter_v.y) == true)
+		{
+			data->ray[i].is_door_v = true;
+			break ;
+		}
 		data->ray[i].inter_v.x += data->ray[i].steps.x;
 		data->ray[i].inter_v.y += data->ray[i].steps.y;
 		x_a = data->ray[i].inter_v.x;
@@ -69,12 +79,14 @@ void	wall_distance(t_data *data, int i)
 	dis_v = calcul_dis (data, data->ray[i].inter_v);
 	if (dis_v <= dis_h)
 	{
+		data->ray[i].is_door_h = false;
 		data->ray[i].pos_wall = data->ray[i].inter_v;
 		data->ray[i].distance = dis_v;
 		data->ray[i].h_or_v = 'v';
 	}
 	else
 	{
+		data->ray[i].is_door_v = false;
 		data->ray[i].pos_wall = data->ray[i].inter_h;
 		data->ray[i].distance = dis_h;
 		data->ray[i].h_or_v = 'h';
@@ -111,6 +123,8 @@ void	cast_rays(t_data *data)
 	while (i < W_S)
 	{
 		data->ray[i].angle = norm_angle (angle);
+		data->ray[i].is_door_h = false;
+		data->ray[i].is_door_v = false;
 		get_derictions (data, i);
 		inter_h (data, i);
 		inter_v (data, i);
@@ -118,7 +132,6 @@ void	cast_rays(t_data *data)
 		angle += FOV / W_S;
 		i++;
 	}
-	reset_img (data);
 	draw_3d (data);
 }
 
