@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:54:54 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/03 14:03:31 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/03 14:47:25 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static char	**splited(char **strs, const char *s, char c, bool remove)
 	k = 0;
 	while (*s)
 	{
+		while (*s == c)
+			s++;
 		i = 0;
 		while (s[i] && s[i] != c)
 			i++;

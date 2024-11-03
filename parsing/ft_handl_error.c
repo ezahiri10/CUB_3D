@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_handl_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 13:59:09 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/10/13 13:59:39 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:57:40 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,5 @@
 void	handl_error_missage(char *missage)
 {
 	ft_putstr_fd(missage, 2);
-	ft_malloc(0, 2);
-	exit(1);
+	ft_exit(1);
 }
