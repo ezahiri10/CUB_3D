@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 14:01:27 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/03 14:05:00 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/03 15:34:34 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,9 @@ void	add_colors(char **colors, t_data *data, int type)
 		&& (nb_color[2] >= 0 && nb_color[2] <= 255))
 	{
 		if (type == 1)
-		{
-			printf("floor :");
 			data->map.floor = rgb(nb_color[0], nb_color[1], nb_color[2], 255);
-		}
 		else if (type == 2)
-		{
-			printf("ceiling :");
 			data->map.ceiling = rgb(nb_color[0], nb_color[1], nb_color[2], 255);
-		}
-		printf(" %d, %d, %d\n", nb_color[0], nb_color[1], nb_color[2]);
 	}
 	else
 		handl_error_missage("Error\nInvalid color");

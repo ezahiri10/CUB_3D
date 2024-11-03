@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_analyse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 14:01:02 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/10/27 22:13:44 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/03 15:48:27 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	check_map_member(t_data *data, char **map, int size,
 		i++;
 	}
 	if (player_counter != 1)
-		handl_error_missage("Error\nInvalid map");
+		handl_error_missage("Error\nInvalid player");
 }
 
 void	add_map(t_data *data, int i)

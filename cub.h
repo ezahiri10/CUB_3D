@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:21:56 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/03 14:04:06 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/03 15:54:03 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
-
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
@@ -115,7 +114,6 @@ void		first_point_h(t_data *data, int i);
 void		first_point_v(t_data *data, int i);
 void		get_derictions(t_data *data, int i);
 bool		check_wall(t_data *data, double x, double y);
-bool		check_door(t_data *data, double x, double y);
 void		draw_3d(t_data *data);
 uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
 void		put_pixel(mlx_image_t *img, double x, double y, double color);
@@ -131,20 +129,11 @@ char	*rest_of_str(char *s);
 char	*read_line(char *s, int fd);
 size_t	ft_countlen(const char *s);
 int		ft_newline(char *s);
-void	reload_sprit_animation(void *ptr);
-void	shoot_sprit_animation(void *ptr);
-void	ft_load_gun_reload(t_data *d);
-void	ft_load_gun_shoot(t_data *d);
-void	init_paths(char *paths[9]);
-void	init_reload_paths(char *paths[9]);
-void	ft_print_bullet(t_data *data);
-void	close_doors(t_data *data);
-void	open_close_door(void *ptr);
 
 //parsin
 
 int		check_valide_map_name(char *map_name);
-int		parsing(t_data *data, char *av);
+void	parsing(t_data *data, char *av);
 void	handl_error_missage(char *missage);
 int		is_textur_or_f_c(char *line);
 void	handle_start_last_of_map(char *line);
@@ -179,5 +168,7 @@ char	*ft_strchr(const char *s, int c);
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void*));
+void	ft_exit(int i);
+
 
 #endif 

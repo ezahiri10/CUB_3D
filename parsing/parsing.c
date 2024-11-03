@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:10:49 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/03 14:04:32 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/03 15:50:44 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	parse_map_member(t_data *data)
 	}
 }
 
-int	parsing(t_data *data, char *av)
+void	parsing(t_data *data, char *av)
 {
 	int	fd;
 
@@ -95,5 +95,4 @@ int	parsing(t_data *data, char *av)
 		handl_error_missage("Error\ncan't open the map");
 	get_all_map(data, fd);
 	parse_map_member(data);
-	return (0);
 }

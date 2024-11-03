@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:03:00 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/03 14:58:17 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/03 15:50:29 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	ft_memset (&data, 0, sizeof (t_data));
-	if (parsing(&data, av[1]) == -1)
-		return (1);
+	parsing(&data, av[1]);
 	init_data(&data);
 	load_wind (&data);
 	return (0);

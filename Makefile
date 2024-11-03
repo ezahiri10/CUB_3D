@@ -36,6 +36,7 @@ SRC = cub.c render_utils.c load_wind.c drawed.c  move_plyer.c cast_rays.c dda.c 
 		UTILS/ft_strtrim.c \
 		UTILS/ft_substr.c \
 		UTILS/get_line.c \
+		UTILS/ft_exit.c \
 		UTILS/get_line_utils.c
 
 
