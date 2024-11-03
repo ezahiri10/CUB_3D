@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   move_plyer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:18:10 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/28 12:19:06 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/10/27 18:35:40 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+bool	ft_check_wall(t_data *data, double x, double y)
+{
+	int	i;
+	int	j;
+
+	i = (int)floor(y / TILE_SIZE);
+	j = (int)floor(x / TILE_SIZE);
+	if (i < 0 || j < 0 || j >= data->map.width || i >= data->map.height)
+		return (true);
+	if (data->map.map[i][j] == '1')
+		return (true);
+	if (check_door(data, x, y) == true)
+		return (true);
+	return (false);
+}
 
 bool	check_move(t_data *data, double new_x, double new_y)
 {
@@ -26,7 +42,7 @@ bool	check_move(t_data *data, double new_x, double new_y)
 	while (i < 360)
 	{
 		alpha = i * M_PI / 180;
-		if (check_wall (data, pos.x + rest * cos(alpha), \
+		if (ft_check_wall (data, pos.x + rest * cos(alpha), \
 			pos.y + rest * sin(alpha)))
 			return (true);
 		i++;
@@ -64,21 +80,21 @@ void	ft_mover(t_data *data, char move)
 	check_move(data, pos.x, pos.y);
 }
 
-void	ft_exit(t_data *data)
-{
-	int	i;
+// void	ft_exit(t_data *data)
+// {
+// 	int	i;
 
-	i = 0;
-	mlx_delete_image (data->mlx, data->img);
-	mlx_terminate (data->mlx);
-	while (i < data->map.height)
-	{
-		free (data->map.map[i]);
-		i++;
-	}
-	free (data->map.map);
-	exit (0);
-}
+// 	i = 0;
+// 	mlx_delete_image (data->mlx, data->img);
+// 	mlx_terminate (data->mlx);
+// 	while (i < data->map.height)
+// 	{
+// 		free (data->map.map[i]);
+// 		i++;
+// 	}
+// 	free (data->map.map);
+// 	exit (0);
+// }
 
 void	move_player(void *ptr)
 {
@@ -86,7 +102,7 @@ void	move_player(void *ptr)
 
 	data = (t_data *)ptr;
 	if (mlx_is_key_down (data->mlx, MLX_KEY_ESCAPE))
-		ft_exit (data);
+		ft_exit (0);
 	if (mlx_is_key_down (data->mlx, MLX_KEY_D))
 		ft_mover (data, 'D');
 	if (mlx_is_key_down (data->mlx, MLX_KEY_A))
@@ -96,10 +112,8 @@ void	move_player(void *ptr)
 	if (mlx_is_key_down (data->mlx, MLX_KEY_S))
 		ft_mover (data, 'S');
 	if (mlx_is_key_down (data->mlx, MLX_KEY_LEFT))
-		data->player.angle = norm_angle(data->player.angle - M_PI / 180);
+		data->player.angle = norm_angle(data->player.angle - 2 * M_PI / 180);
 	if (mlx_is_key_down (data->mlx, MLX_KEY_RIGHT))
-		data->player.angle = norm_angle(data->player.angle + M_PI / 180);
+		data->player.angle = norm_angle(data->player.angle + 2 * M_PI / 180);
 	cast_rays (data);
 }
-
-	// render_map (data);

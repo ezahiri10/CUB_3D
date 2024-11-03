@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:36:05 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/08/26 15:39:37 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/10/27 22:17:15 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <limits.h>
+# include "../cub.h"
 
 typedef struct s_list
 {
@@ -59,6 +60,8 @@ void	ft_putnbr_fd(int n, int fd);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 size_t	ft_strspn(const char *s, const char *set);
+void	*get_add(void *ptr);
+void	ft_exit(int i);
 
 //get_next_line
 

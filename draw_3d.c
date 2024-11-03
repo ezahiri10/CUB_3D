@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_3d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:25:20 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/28 12:35:55 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/10/27 18:27:01 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,31 @@ void	put_txt(t_data *data, int i, double y, int j)
 	put_pixel (data->img, i, y, color);
 }
 
+void	draw_fl_cl(t_data *data, int i)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = H_S / 2 - data->ray[i].line / 2;
+	if (y < 0)
+		y = 0;
+	while (x <= y)
+	{
+		put_pixel (data->img, i, x, data->map.floor);
+		x++;
+	}
+	x = H_S / 2 + data->ray[i].line / 2;
+	if (x > H_S)
+		x = H_S;
+	y = H_S;
+	while (x <= y)
+	{
+		put_pixel (data->img, i, x, data->map.ceiling);
+		x++;
+	}
+}
+
 void	draw_lines(t_data *data, int i, int j)
 {
 	double	y;
@@ -50,15 +75,16 @@ void	draw_lines(t_data *data, int i, int j)
 	double	height;
 
 	height = data->texture[j]->height;
-	x = 0;
+	// x = 0;
+	// while (x <= y)
+	// {
+	// 	put_pixel (data->img, i, x, data->map.floor);
+	// 	x++;
+	// }
+	draw_fl_cl(data, i);
 	y = H_S / 2 - data->ray[i].line / 2;
 	if (y < 0)
 		y = 0;
-	while (x <= y)
-	{
-		put_pixel (data->img, i, x, RED);
-		x++;
-	}
 	x = H_S / 2 + data->ray[i].line / 2;
 	if (x >= H_S)
 		x = H_S;
@@ -71,24 +97,6 @@ void	draw_lines(t_data *data, int i, int j)
 	}
 }
 
-void	get_texture(t_data *data, int i)
-{
-	if (data->ray[i].h_or_v == 'v')
-	{
-		if (data->ray[i].left_right == 'l')
-			data->ray[i].j = 2;
-		if (data->ray[i].left_right == 'r')
-			data->ray[i].j = 3;
-	}
-	if (data->ray[i].h_or_v == 'h')
-	{
-		if (data->ray[i].up_down == 'u')
-			data->ray[i].j = 0;
-		if (data->ray[i].up_down == 'd')
-			data->ray[i].j = 1;
-	}
-}
-
 void	draw_3d(t_data *data)
 {
 	double	cor_ray;
@@ -98,6 +106,8 @@ void	draw_3d(t_data *data)
 	while (i < W_S)
 	{
 		get_texture(data, i);
+		if (data->ray[i].is_door_h || data->ray[i].is_door_v)
+			data->ray[i].j = 4;
 		data->ray[i].p_txt.x = get_x(data, i);
 		cor_ray = data->ray[i].distance * \
 			cos(data->player.angle - data->ray[i].angle);

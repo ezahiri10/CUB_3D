@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   first_point.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 10:25:35 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/12 10:26:38 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/10/27 18:25:25 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void    first_point_v(t_data *data, int i)
+void	first_point_v(t_data *data, int i)
 {
 	double	x_p;
 	double	y_p;

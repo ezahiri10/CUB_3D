@@ -3,55 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   cub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:03:00 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/09/28 11:54:55 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/10/29 11:24:37 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
+void	player_dirction(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = data->map.i;
+	j = data->map.j;
+	if (data->map.map[i][j] == 'N')
+		data->player.angle = 3 * M_PI / 2;
+	else if (data->map.map[i][j] == 'S')
+		data->player.angle = M_PI / 2;
+	else if (data->map.map[i][j] == 'E')
+		data->player.angle = 0;
+	else if (data->map.map[i][j] == 'W')
+		data->player.angle = M_PI;
+}
+
 void	init_data(t_data *data)
 {
-	data->map.map = (char **)malloc (sizeof (char *) * 20);
-	data->map.map[0] = ft_strdup ("111111111111111111111111111111");
-	data->map.map[1] = ft_strdup ("100000000000000000000000000001");
-	data->map.map[2] = ft_strdup ("100000000000000000000000000001");
-	data->map.map[3] = ft_strdup ("100000000000000000000000000001");
-	data->map.map[4] = ft_strdup ("100000000000000000000000000001");
-	data->map.map[5] = ft_strdup ("100000000010000000000000000001");
-	data->map.map[6] = ft_strdup ("100000000000000000000000000001");
-	data->map.map[7] = ft_strdup ("100000000000000110000000000001");
-	data->map.map[8] = ft_strdup ("100000000000000000000000000001");
-	data->map.map[9] = ft_strdup ("100000000000000000000000000001");
-	data->map.map[10] = ft_strdup ("1000000000000P0000000000000001");
-	data->map.map[11] = ft_strdup ("100000000000000000000000000001");
-	data->map.map[12] = ft_strdup ("100000000000000000000000000001");
-	data->map.map[13] = ft_strdup ("111111111111110111111111111111");
-	data->map.map[14] = ft_strdup ("100000000000000000000000000001");
-	data->map.map[15] = ft_strdup ("100000000000000000000000000001");
-	data->map.map[16] = ft_strdup ("100000000000000000000000000001");
-	data->map.map[17] = ft_strdup ("100000000000000000000000000001");
-	data->map.map[18] = ft_strdup ("111111111111111111111111111111");
-	data->map.map[19] = NULL;
-	data->map.height = 19;
-	data->map.width = 30;
-	data->map.i = 13;
-	data->map.j = 10;
-	data->map.floor = rgb (220, 100, 0, 255);
-	data->map.ceiling = rgb (225, 30, 0, 255);
-	data->player.pos.x = data->map.i * TILE_SIZE + TILE_SIZE / 2;
-	data->player.pos.y = data->map.j * TILE_SIZE + TILE_SIZE / 2;
-	data->player.angle = M_PI / 2;
+	data->player.pos.y = data->map.i * TILE_SIZE + TILE_SIZE / 2;
+	data->player.pos.x = data->map.j * TILE_SIZE + TILE_SIZE / 2;
+	player_dirction (data);
 	data->height = data->map.height * TILE_SIZE;
 	data->width = data->map.width * TILE_SIZE;
-	data->texture = malloc (sizeof (mlx_texture_t *) * 4);
-	data->texture[0] = mlx_load_png ("textur/sh3.png");
-	data->texture[1] = mlx_load_png ("textur/uchi1.png");
-	data->texture[2] = mlx_load_png ("textur/uchi2.png");
-	data->texture[3] = mlx_load_png ("textur/uchi3.png");
+	data->texture = ft_malloc (sizeof (mlx_texture_t *) * 5, 1);
+	data->texture[0] = mlx_load_png (data->no_texture);
+	data->texture[1] = mlx_load_png (data->so_texture);
+	data->texture[2] = mlx_load_png (data->ea_texture);
+	data->texture[3] = mlx_load_png (data->we_texture);
+	data->texture[4] = mlx_load_png ("textur/door.png");
+	if (!data->texture[0] || !data->texture[1] || !data->texture[2]
+		|| !data->texture[3] || !data->texture[4])
+		handl_error_missage("Error\nInvalid texture path");
 }
+
+void	f(void)
+{
+	system("leaks Cub3D");
+}
+	// atexit (f);
 
 int	main(int ac, char **av)
 {
@@ -59,13 +59,18 @@ int	main(int ac, char **av)
 
 	(void)ac;
 	(void)av;
+	get_add(&data);
+	if (ac != 2)
+	{
+		ft_putendl_fd ("Error\ninvalid input", 2);
+		return (1);
+	}
 	ft_memset (&data, 0, sizeof (t_data));
+	// if (parsing_bonus(&data, av[1]) == -1)
+	// 	return (1);
+	if (parsing(&data, av[1]) == -1)
+		return (1);
 	init_data(&data);
 	load_wind (&data);
 	return (0);
 }
-	// {
-	// if (ac != 2)
-	// 	ft_putendl_fd ("invalid input", 2);
-	// 	return (1);
-	// }
