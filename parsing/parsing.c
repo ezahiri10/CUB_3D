@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:10:49 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/03 15:50:44 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/03 17:25:32 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	parse_map_member(t_data *data)
 			break ;
 		}
 	}
+	if (data->map.map[i] == NULL)
+		handl_error_missage("Error\nEmpty map");
 }
 
 void	parsing(t_data *data, char *av)

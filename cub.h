@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:21:56 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/03 15:54:03 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/03 17:11:22 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ typedef struct s_data
 	uint32_t 		*txt;
 	t_ray			*ray;
 	t_player		player;
-	double			width;
-	double			height;
 	t_map			map;
 	mlx_image_t *bullet_text;
 }				t_data;
