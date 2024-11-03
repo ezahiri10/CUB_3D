@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_3d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:25:20 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/10/27 18:27:01 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/02 21:45:39 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,6 @@ void	draw_3d(t_data *data)
 	while (i < W_S)
 	{
 		get_texture(data, i);
-		if (data->ray[i].is_door_h || data->ray[i].is_door_v)
-			data->ray[i].j = 4;
 		data->ray[i].p_txt.x = get_x(data, i);
 		cor_ray = data->ray[i].distance * \
 			cos(data->player.angle - data->ray[i].angle);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 14:01:27 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/10/27 22:16:13 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:05:00 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ void	validate_color_format(char *line, int cama, int i)
 void	get_color(char *line, t_data *data, int type)
 {
 	validate_color_format(line, 0, 0);
-	add_colors(ft_split(line, ','), data, type);
+	add_colors(ft_split(line, ',', false), data, type);
 }

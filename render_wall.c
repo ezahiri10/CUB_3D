@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_wall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 15:15:44 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/10/29 14:54:03 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/02 22:25:08 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,39 +26,6 @@ bool	check_wall(t_data *data, double x, double y)
 	return (false);
 }
 
-int	get_door_index(t_data *data, int i, int j)
-{
-	int	ind;
-
-	ind = 0;
-	while (ind < data->map.door_counter)
-	{
-		if (data->doors[ind].i == i && data->doors[ind].j == j)
-			return (ind);
-		ind++;
-	}
-	return (-1);
-}
-
-bool	check_door(t_data *data, double x, double y)
-{
-	int	i;
-	int	j;
-	int	t;
-
-	i = (int)floor(y / TILE_SIZE);
-	j = (int)floor(x / TILE_SIZE);
-	if (data->map.map[i][j] == 'D')
-	{
-		t = get_door_index(data, i, j);
-		if (t == -1)
-			return (false);
-		else if (data->doors[t].stat == 'C')
-			return (true);
-	}
-	return (false);
-}
-
 void	draw_line(int i, double line, t_data *data)
 {
 	double	y;
@@ -70,7 +37,7 @@ void	draw_line(int i, double line, t_data *data)
 		y = 0;
 	while (x <= y)
 	{
-		put_pixel (data->img, i, x, BLUE);
+		put_pixel (data->img, i, x, 20);
 		x++;
 	}
 	x = H_S / 2 + line / 2;

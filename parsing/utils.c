@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 14:01:51 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/10/27 22:13:10 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/02 22:22:16 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@ int	is_map_member(char c)
 {
 	if (c == '1' || c == '0' || c == 'N' || c == 'S'
 		|| c == 'E' || c == 'W')
-		return (1);
-	return (0);
-}
-
-int	ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }

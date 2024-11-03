@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_wind.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 16:34:51 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/02 21:38:03 by ezahiri          ###   ########.fr       */
+/*   Created: 2023/11/05 21:56:25 by ezahiri           #+#    #+#             */
+/*   Updated: 2024/11/03 11:23:22 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "../cub.h"
 
-void	init_mlx(t_data *data)
+
+void	ft_putchar_fd(char c, int fd)
 {
-	data->mlx = mlx_init (W_S, H_S, "CUB3", false);
-	if (!data->mlx)
-		ft_exit (1);
-	data->img = mlx_new_image (data->mlx, W_S, H_S);
-	if (!data->img)
-		ft_exit (1);
-	mlx_image_to_window (data->mlx, data->img, 0, 0);
+	if (fd >= 0)
+		write(fd, &c, 1);
 }
 
-void	frames(void *ptr)
+void	ft_putendl_fd(char *s, int fd)
 {
-	move_player(ptr);
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }
 
-void	load_wind(t_data *data)
+void	ft_putstr_fd(char *s, int fd)
 {
-	init_mlx (data);
-	mlx_loop_hook (data->mlx, frames, data);
-	mlx_loop (data->mlx);
+	if (!s)
+		return ;
+	while (*s)
+		ft_putchar_fd(*s++, fd);
 }

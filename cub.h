@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:21:56 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/10/30 10:31:06 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:04:06 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,15 @@
 
 # include <stdio.h>
 # include <stdlib.h>
-# include "libft/libft.h"
 # include <stdbool.h>
 # include <string.h>
 # include <unistd.h>
 # include <math.h>
 # include <fcntl.h>
-# include "/Users/sel-hasn/Desktop/CUB_3D/MLX42/include/MLX42/MLX42.h"
+# include "/Users/ezahiri/Desktop/CUB_MANDA/MLX42/include/MLX42/MLX42.h"
 # include <sys/time.h>
 
 
-#define RED 0xFF0000FF
 # define TILE_SIZE 40
 # define H_S 864
 # define W_S 1200
@@ -37,8 +35,6 @@
 # define FOV	60 * M_PI / 180 
 # define ROT 2
 # define RAY TILE_SIZE / 10
-# define BLUE 0x0000FFFF
-# define GREEN 0x00FF00FF
 
 typedef unsigned char t_color;
 
@@ -48,19 +44,11 @@ typedef struct s_vector
 	double	y;
 }		t_vector;
 
-typedef struct s_door
-{
-	int		i;
-	int		j;
-	char	stat;
-}		t_door;
-
 typedef struct s_map
 {
 	char		**map;
 	int			i;
 	int			j;
-	int			door_counter;
 	int			width;
 	int			height;
 	uint32_t	floor;
@@ -76,8 +64,6 @@ typedef struct s_player
 typedef struct s_ray
 {
 	int 		j;
-	bool		is_door_v;
-	bool		is_door_h;
 	double		distance;
 	double		angle;
 	char		left_right;
@@ -96,29 +82,24 @@ typedef struct s_data
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	mlx_texture_t	**texture;
-	mlx_texture_t	**shoot;
-	mlx_image_t		**shoot_img;
-	mlx_texture_t	**reload;
-	mlx_image_t		**reload_img;
 	char			*no_texture;
 	char			*so_texture;
 	char			*we_texture;
 	char			*ea_texture;
 	uint32_t 		*txt;
 	t_ray			*ray;
-	t_door			*doors;
 	t_player		player;
-	t_vector		door_pos;
 	double			width;
 	double			height;
 	t_map			map;
-    bool			is_shooting;
-    bool			is_reloading;
-    bool			is_open;
-    bool			is_close;
-	int				bullets;
 	mlx_image_t *bullet_text;
 }				t_data;
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}				t_list;
 
 uint32_t	rgb(t_color r, t_color g, t_color b, t_color a);
 void		load_wind(t_data *data);
@@ -165,7 +146,6 @@ void	open_close_door(void *ptr);
 int		check_valide_map_name(char *map_name);
 int		parsing(t_data *data, char *av);
 void	handl_error_missage(char *missage);
-char	**ft_divide(char const *s, char c);
 int		is_textur_or_f_c(char *line);
 void	handle_start_last_of_map(char *line);
 void 	ft_copy_map(char **map, t_data *data, int start_index, int size);
@@ -178,22 +158,26 @@ int		is_map_member(char c);
 void	get_color(char *line, t_data *data, int type);
 void	add_colors(char **colors, t_data *data, int type);
 
-//bonus parsing
-
-// int		check_valide_map_name(char *map_name);
-// int 	parsing_bonus(t_data *data, char *av);
-// void	handl_error_missage(char *missage);
-// char	**ft_divide(char const *s, char c);
-// int		is_textur_or_f_c(char *line);
-// void	handle_start_last_of_map(char *line);
-// void 	ft_copy_map(char **map, t_data *data, int start_index, int size);
-// void	add_textur_or_f_c(char *line, t_data *data, int *elem);
-// void	add_map_bonus(t_data *data, int i);
-// int		ft_skipe_spaces(char *line, int i);
-// int		ft_isdigit(int c);
-// int		is_player(char c);
-// int		is_map_member_bonus(char c);
-// void	get_color(char *line, t_data *data, int type);
-// void	add_colors(char **colors, t_data *data, int type);
+//utils
+void	*ft_memset(void *b, int c, size_t len);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strtrim(char const *s1, char const *set);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t	ft_strlen(const char *s);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strdup(const char *s1);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
+long	ft_atoi(const char *str);
+int		ft_isdigit(int c);
+void	*ft_malloc(size_t size, int mod);
+void	*get_add(void *ptr);
+void	ft_exit(int i);
+char	**ft_split(char const *s, char c, bool remove);
+char	*ft_strchr(const char *s, int c);
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstclear(t_list **lst, void (*del)(void*));
 
 #endif 

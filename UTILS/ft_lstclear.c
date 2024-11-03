@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_wind.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 16:34:51 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/02 21:38:03 by ezahiri          ###   ########.fr       */
+/*   Created: 2023/11/10 04:23:26 by ezahiri           #+#    #+#             */
+/*   Updated: 2023/11/23 00:51:33 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "../cub.h"
 
-void	init_mlx(t_data *data)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	data->mlx = mlx_init (W_S, H_S, "CUB3", false);
-	if (!data->mlx)
-		ft_exit (1);
-	data->img = mlx_new_image (data->mlx, W_S, H_S);
-	if (!data->img)
-		ft_exit (1);
-	mlx_image_to_window (data->mlx, data->img, 0, 0);
+	if (!lst || !del)
+		return ;
+	del (lst -> content);
+	free(lst);
 }
 
-void	frames(void *ptr)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	move_player(ptr);
-}
+	t_list	*tmp;
 
-void	load_wind(t_data *data)
-{
-	init_mlx (data);
-	mlx_loop_hook (data->mlx, frames, data);
-	mlx_loop (data->mlx);
+	if (!lst || !del)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next ;
+		ft_lstdelone(*lst, del);
+		(*lst) = tmp;
+	}
+	*lst = NULL;
 }

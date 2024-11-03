@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:10:49 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/10/28 20:36:36 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/03 14:04:32 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	check_valide_map_name(char *map_name)
 {
-	int		i;
-	int		len;
 	char	*cub;
+	int		len;
+	int		i;
 
+	i = 0;
 	cub = ".cub";
 	len = (ft_strlen(map_name) - 4);
-	i = 0;
 	while (map_name[len])
 	{
 		if (cub[i] == map_name[len])
@@ -51,7 +51,7 @@ int	get_all_map(t_data *data, int fd)
 		tmp_line = line;
 		line = get_line(fd);
 	}
-	data->map.map = ft_divide(s, '\n');
+	data->map.map = ft_split(s, '\n', true);
 	if (tmp_line[ft_strlen(tmp_line) - 1] == '\n')
 		handl_error_missage("Error\nInvalid map");
 	close(fd);
@@ -92,12 +92,8 @@ int	parsing(t_data *data, char *av)
 		handl_error_missage("Error\nInvalib map name");
 	fd = open(av, O_RDONLY);
 	if (fd == -1)
-		return (ft_putstr_fd("Error\ncan't open the map", 2), -1);
+		handl_error_missage("Error\ncan't open the map");
 	get_all_map(data, fd);
 	parse_map_member(data);
-	printf("'%s'\n", data->no_texture);
-	printf("'%s'\n", data->so_texture);
-	printf("'%s'\n", data->we_texture);
-	printf("'%s'\n", data->ea_texture);
 	return (0);
 }

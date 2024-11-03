@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_plyer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:18:10 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/10/27 18:35:40 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/02 22:24:51 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ bool	ft_check_wall(t_data *data, double x, double y)
 	if (i < 0 || j < 0 || j >= data->map.width || i >= data->map.height)
 		return (true);
 	if (data->map.map[i][j] == '1')
-		return (true);
-	if (check_door(data, x, y) == true)
 		return (true);
 	return (false);
 }
@@ -79,22 +77,6 @@ void	ft_mover(t_data *data, char move)
 	}
 	check_move(data, pos.x, pos.y);
 }
-
-// void	ft_exit(t_data *data)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	mlx_delete_image (data->mlx, data->img);
-// 	mlx_terminate (data->mlx);
-// 	while (i < data->map.height)
-// 	{
-// 		free (data->map.map[i]);
-// 		i++;
-// 	}
-// 	free (data->map.map);
-// 	exit (0);
-// }
 
 void	move_player(void *ptr)
 {
