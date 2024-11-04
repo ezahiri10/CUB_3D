@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawed.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:40:36 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/10/27 18:27:11 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/04 20:48:37 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	put_cercle(t_data *data)
 	int			i;
 	int			j;
 
-	pos.x = data->player.pos.x;
-	pos.y = data->player.pos.y;
+	pos.x = data->mini_p.x;
+	pos.y = data->mini_p.y;
 	i = pos.y - RAY;
 	j = pos.x - RAY;
 	while (i <= pos.y + RAY)
@@ -46,7 +46,7 @@ int	put_cercle(t_data *data)
 		while (j <= pos.x + RAY)
 		{
 			if (pow(j - pos.x, 2) + pow(i - pos.y, 2) <= pow(RAY, 2))
-				mlx_put_pixel (data->img, j, i, rgb (0, 255, 0, 255));
+				put_pixel (data->mini, j, i, rgb (0, 255, 0, 255));
 			j++;
 		}
 		i++;
@@ -54,45 +54,58 @@ int	put_cercle(t_data *data)
 	return (0);
 }
 
-int	put_carre(t_data *data, int x, int y, uint32_t color)
+void	put_carre(t_data *data, int x, int y, uint32_t color)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < TILE_SIZE)
+	while (i < TILE_SIZE / 2)
 	{
 		j = 0;
-		while (j < TILE_SIZE)
+		while (j < TILE_SIZE / 2)
 		{
-			mlx_put_pixel(data->img, x + i, y + j, color);
+			if (x + i < 0 || x + i >= W_S / 3)
+				return ;
+			if (y + j < 0 || y + j >= H_S / 3)
+				return ;
+			mlx_put_pixel(data->mini, x + i, y + j, color);
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	return ;
 }
 
 void	render_map(t_data *data)
 {
-	int	i;
-	int	j;
+	double			i;
+	double			j;
+	// t_vector 	pos;
 
-	i = 0;
-	while (i < data->map.height)
+	i = floor (data->player.pos.x/ TILE_SIZE) - 2;
+	if (i < 0)
+		i = 0;
+	while (i < floor (data->player.pos.x / TILE_SIZE)  + 2)
 	{
-		j = 0;
-		while (j < data->map.width)
+		printf ("data->player i:%f j:%f\n", i, j);
+		j = floor (data->player.pos.y/ TILE_SIZE)  - 2;
+		if (j < 0)
+			j = 0;
+		while (j < floor (data->player.pos.y/ TILE_SIZE)  + 2)
 		{
-			if (data->map.map[i][j] == '1')
-				put_carre (data, j * TILE_SIZE, i * TILE_SIZE,
+			if (data->map.map[(int)i][(int)j] == '1')
+				put_carre (data,( j * TILE_SIZE) / 2, (i * TILE_SIZE) / 2,
 					rgb (0, 255, 255, 255));
 			else
-				put_carre (data, j * TILE_SIZE, i * TILE_SIZE,
+				put_carre (data, j * TILE_SIZE / 2, i * TILE_SIZE / 2,
 					rgb (255, 255, 255, 255));
 			j++;
 		}
 		i++;
 	}
-	put_cercle(data);
+	data->mini_p.x = data->player.pos.x / 4;
+	data->mini_p.y = data->player.pos.y / 4;
+	 //put_cercle(data);
+	// dda(data, data->mini_p, data->mini_p.x + cos (data->player.angle) * 10, data->mini_p.y + sin (data->player.angle) * 10);
 }

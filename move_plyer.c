@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_plyer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:18:10 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/04 09:07:28 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:22:31 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,5 @@ void	move_player(void *ptr)
 	if (mlx_is_key_down (data->mlx, MLX_KEY_RIGHT))
 		data->player.angle = norm_angle(data->player.angle + 2 * M_PI / 180);
 	cast_rays (data);
+	render_map (data);
 }

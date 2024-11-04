@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_wind.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:34:51 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/04 09:13:06 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:17:57 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,16 @@ void	init_mlx(t_data *data)
 	data->mlx = mlx_init (W_S, H_S, "CUB3", false);
 	if (!data->mlx)
 		ft_exit (1);
+	data->mini = mlx_new_image (data->mlx, W_S / 3, H_S / 3);
+	if (!data->mini) // ft_exit
+		ft_exit (1);
 	data->img = mlx_new_image (data->mlx, W_S, H_S);
 	if (!data->img)
 		ft_exit (1);
-	mlx_image_to_window (data->mlx, data->img, 0, 0);
+	if (mlx_image_to_window (data->mlx, data->img, 0, 0) == -1)
+		ft_exit (1);
+	if (mlx_image_to_window (data->mlx, data->mini, 0, 0) == -1)
+		ft_exit (1);
 }
 
 void	key_hook(mlx_key_data_t keydata, void *param)

@@ -3,7 +3,7 @@ CC = cc
 DIRMLX = /Users/$(USER)/Desktop/CUB_3D/libmlx42.a
 
 
-FLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 RM = rm -f
 

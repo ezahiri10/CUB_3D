@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:21:56 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/04 09:21:22 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:05:21 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <unistd.h>
 # include <math.h>
 # include <fcntl.h>
-# include "/Users/sel-hasn/Desktop/CUB_3D/MLX42/include/MLX42/MLX42.h"
+# include "MLX42/include/MLX42/MLX42.h"
 # include <sys/time.h>
 
 
@@ -106,6 +106,8 @@ typedef struct s_data
 	uint32_t 		*txt;
 	t_ray			*ray;
 	t_door			*doors;
+	mlx_image_t		*mini;
+	t_vector 		mini_p;
 	t_player		player;
 	t_vector		door_pos;
 	double			width;

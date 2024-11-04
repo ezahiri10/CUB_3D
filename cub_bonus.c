@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:03:00 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/04 09:03:46 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:38:35 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	f(void)
 {
 	system("lsof -c Cub3D_BON");
 }
-	// atexit (f);
 
 int	main(int ac, char **av)
 {
