@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:02:01 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/03 14:59:33 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/04 14:26:29 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	*get_line(int fd)
 	static char		*s;
 	char			*str;
 
-	if (fd < 0 || fd > 10240 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
 	s = read_line(s, fd);
 	if (!s)

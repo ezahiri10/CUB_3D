@@ -6,13 +6,13 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:18:10 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/02 22:24:51 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/04 14:22:01 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-bool	ft_check_wall(t_data *data, double x, double y)
+bool	check_wall(t_data *data, double x, double y)
 {
 	int	i;
 	int	j;
@@ -40,7 +40,7 @@ bool	check_move(t_data *data, double new_x, double new_y)
 	while (i < 360)
 	{
 		alpha = i * M_PI / 180;
-		if (ft_check_wall (data, pos.x + rest * cos(alpha), \
+		if (check_wall (data, pos.x + rest * cos(alpha), \
 			pos.y + rest * sin(alpha)))
 			return (true);
 		i++;

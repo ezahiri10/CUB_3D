@@ -6,11 +6,17 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:21:41 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/03 15:23:15 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/04 14:30:01 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
+
+void	handl_error_missage(char *missage)
+{
+	ft_putstr_fd(missage, 2);
+	ft_exit(1);
+}
 
 void	ft_close (void)
 {
