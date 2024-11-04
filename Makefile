@@ -1,16 +1,16 @@
 CC = cc
 
-DIRMLX = /Users/$(USER)/Desktop/CUB_3D/libmlx42.a
+DIRMLX = /Users/$(USER)/Desktop/manda/libmlx42.a
 
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 RM = rm -f
 
 NAME = Cub3D
 
 
-MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw  $(DIRMLX)
+MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" $(DIRMLX)
 SRC = cub.c render_utils.c load_wind.c get_texture.c  move_plyer.c cast_rays.c put_pixel.c \
 		 first_point.c draw_3d.c \
 		parsing/parsing.c \

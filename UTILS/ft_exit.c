@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:21:41 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/04 14:30:01 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/04 15:04:31 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	handl_error_missage(char *missage)
 	ft_exit(1);
 }
 
-void	ft_close (void)
+void	ft_close(void)
 {
-	int i;
+	int	i;
 
 	i = 3;
 	while (1)
@@ -31,9 +31,9 @@ void	ft_close (void)
 	}
 }
 
-void free_txt (mlx_texture_t	**txt)
+void	free_txt(mlx_texture_t	**txt)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 4)
@@ -43,6 +43,7 @@ void free_txt (mlx_texture_t	**txt)
 		i++;
 	}
 }
+
 void	ft_exit(int i)
 {
 	t_data	*data;

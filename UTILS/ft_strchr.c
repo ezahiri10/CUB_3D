@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 18:17:55 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/02 22:10:59 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/04 15:03:44 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "../cub.h"
+#include "../cub.h"
 
 char	*ft_strchr(const char *s, int c)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:21:56 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/04 14:41:55 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/04 15:02:47 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <limits.h>
 # include <math.h>
 # include <fcntl.h>
-# include "/Users/ezahiri/Desktop/CUB_MANDA/MLX42/include/MLX42/MLX42.h"
+# include "/Users/sel-hasn/Desktop/manda/MLX42/include/MLX42/MLX42.h"
 # include <sys/time.h>
 
 # define TILE_SIZE 40
