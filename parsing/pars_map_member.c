@@ -6,7 +6,7 @@
 /*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 14:11:44 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/10/27 22:12:09 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/10/29 12:22:56 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ void	handle_start_last_of_map(char *line)
 		if (line[i] == '1' || line[i] == ' ')
 			i++;
 		else
-			handl_error_missage("Error\nInvalid map");
+			handl_error_missage("Error\nInvalid map6");
 	}
 }

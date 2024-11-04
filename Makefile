@@ -3,16 +3,16 @@ CC = cc
 DIRMLX = /Users/$(USER)/Desktop/CUB_3D/libmlx42.a
 
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 RM = rm -f
 
 NAME = Cub3D
 
+MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" $(LIBFT) $(DIRMLX) #-fsanitize=address -g
 
-MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" $(LIBFT) $(DIRMLX)
-SRC = cub.c render_utils.c load_wind.c drawed.c  move_plyer.c cast_rays.c dda.c \
-		render_wall.c first_point.c draw_3d.c \
+SRC = cub_bonus.c render_utils.c load_wind.c drawed.c  move_plyer.c cast_rays.c dda.c \
+		render_wall.c first_point.c draw_3d.c sprit.c sprit_utils.c door.c \
 		parsing/parsing.c \
 		parsing/utils.c  \
 		parsing/pars_map_member.c  \
@@ -20,6 +20,7 @@ SRC = cub.c render_utils.c load_wind.c drawed.c  move_plyer.c cast_rays.c dda.c 
 		parsing/handle_color.c \
 		parsing/ft_handl_error.c \
 		UTILS/ft_atoi.c \
+		UTILS/ft_itoa.c \
 		UTILS/ft_isdigit.c \
 		UTILS/ft_lstadd_back.c \
 		UTILS/ft_lstclear.c \
@@ -39,17 +40,15 @@ SRC = cub.c render_utils.c load_wind.c drawed.c  move_plyer.c cast_rays.c dda.c 
 		UTILS/ft_exit.c \
 		UTILS/get_line_utils.c
 
-
 OBJ = $(SRC:.c=.o)
 
-all :  $(NAME)
+all : $(NAME)
 
 %.o : %.c cub.h
 	$(CC)  $(FLAGS) -c  $<   -o $@
 
 $(NAME) : $(OBJ)
 	$(CC) $(MLXFLAGS) $(SRC) -o $(NAME) 
-
 
 clean :
 	$(RM) $(OBJ)
@@ -59,4 +58,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : $(LIBFT)
+.PHONY : clean

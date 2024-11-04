@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_3d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:25:20 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/02 21:45:39 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/04 09:22:44 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,6 @@ void	draw_lines(t_data *data, int i, int j)
 	double	height;
 
 	height = data->texture[j]->height;
-	// x = 0;
-	// while (x <= y)
-	// {
-	// 	put_pixel (data->img, i, x, data->map.floor);
-	// 	x++;
-	// }
 	draw_fl_cl(data, i);
 	y = H_S / 2 - data->ray[i].line / 2;
 	if (y < 0)
@@ -106,6 +100,8 @@ void	draw_3d(t_data *data)
 	while (i < W_S)
 	{
 		get_texture(data, i);
+		if (data->ray[i].is_door_h || data->ray[i].is_door_v)
+			data->ray[i].j = 4;
 		data->ray[i].p_txt.x = get_x(data, i);
 		cor_ray = data->ray[i].distance * \
 			cos(data->player.angle - data->ray[i].angle);

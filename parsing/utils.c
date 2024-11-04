@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 14:01:51 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/02 22:22:16 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/04 08:52:53 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	is_player(char c)
 	return (0);
 }
 
-int	is_map_member(char c)
+int	is_map_member_bonus(char c)
 {
 	if (c == '1' || c == '0' || c == 'N' || c == 'S'
-		|| c == 'E' || c == 'W')
+		|| c == 'E' || c == 'W' || c == 'D')
 		return (1);
 	return (0);
 }

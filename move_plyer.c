@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_plyer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:18:10 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/02 22:24:51 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/04 09:07:28 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ bool	ft_check_wall(t_data *data, double x, double y)
 	if (i < 0 || j < 0 || j >= data->map.width || i >= data->map.height)
 		return (true);
 	if (data->map.map[i][j] == '1')
+		return (true);
+	if (check_door(data, x, y) == true)
 		return (true);
 	return (false);
 }

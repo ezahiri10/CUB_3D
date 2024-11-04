@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.c                                              :+:      :+:    :+:   */
+/*   cub_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:03:00 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/03 15:58:00 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/04 09:03:46 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,30 @@ void	init_data(t_data *data)
 	data->player.pos.y = data->map.i * TILE_SIZE + TILE_SIZE / 2;
 	data->player.pos.x = data->map.j * TILE_SIZE + TILE_SIZE / 2;
 	player_dirction (data);
-	data->texture = ft_malloc (sizeof (mlx_texture_t *) * 4, 1);
+	data->height = data->map.height * TILE_SIZE;
+	data->width = data->map.width * TILE_SIZE;
+	data->texture = ft_malloc (sizeof (mlx_texture_t *) * 5, 1);
 	data->texture[0] = mlx_load_png (data->no_texture);
 	data->texture[1] = mlx_load_png (data->so_texture);
 	data->texture[2] = mlx_load_png (data->ea_texture);
 	data->texture[3] = mlx_load_png (data->we_texture);
+	data->texture[4] = mlx_load_png ("textur/door.png");
 	if (!data->texture[0] || !data->texture[1] || !data->texture[2]
-		|| !data->texture[3])
+		|| !data->texture[3] || !data->texture[4])
 		handl_error_missage("Error\nInvalid texture path");
 }
 
 void	f(void)
 {
-	system("leaks Cub3D");
-	system("lsof -c Cub3D");
+	system("lsof -c Cub3D_BON");
 }
+	// atexit (f);
 
 int	main(int ac, char **av)
 {
 	t_data	data;
 
-	atexit (f);
+	atexit(f);
 	get_add(&data);
 	if (ac != 2)
 	{
@@ -62,7 +65,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	ft_memset (&data, 0, sizeof (t_data));
-	parsing(&data, av[1]);
+	parsing_bonus(&data, av[1]);
 	init_data(&data);
 	load_wind (&data);
 	return (0);
