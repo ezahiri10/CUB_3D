@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:21:56 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/03 17:11:22 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/04 10:49:32 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,11 @@ typedef struct s_list
 
 uint32_t	rgb(t_color r, t_color g, t_color b, t_color a);
 void		load_wind(t_data *data);
-void		render_map(t_data *data);
 void		move_player(void *ptr);
 double		norm_angle(double angle);
 void		cast_rays(t_data *data);
-void		dda(t_data *data, t_vector init_p, t_vector finl_p);
 double		calcul_dis(t_data *data, t_vector pos);
 void 		render_wall (t_data *data);
-bool		check_pixel(double x, double y, t_data *data);
 void		first_point_h(t_data *data, int i);
 void		first_point_v(t_data *data, int i);
 void		get_derictions(t_data *data, int i);
@@ -118,7 +115,6 @@ void		put_pixel(mlx_image_t *img, double x, double y, double color);
 uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
 void		get_texture(t_data *data, int i);
 
-int			get_door_index(t_data *data, int i, int j);
 //get_line
 
 char	*get_line(int fd);

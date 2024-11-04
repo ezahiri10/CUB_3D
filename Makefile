@@ -11,7 +11,7 @@ NAME = Cub3D
 
 
 MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" $(LIBFT) $(DIRMLX)
-SRC = cub.c render_utils.c load_wind.c drawed.c  move_plyer.c cast_rays.c dda.c \
+SRC = cub.c render_utils.c load_wind.c get_texture.c  move_plyer.c cast_rays.c put_pixel.c \
 		render_wall.c first_point.c draw_3d.c \
 		parsing/parsing.c \
 		parsing/utils.c  \
