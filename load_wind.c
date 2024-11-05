@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:34:51 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/04 18:17:57 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/05 10:05:42 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_mlx(t_data *data)
 	data->mlx = mlx_init (W_S, H_S, "CUB3", false);
 	if (!data->mlx)
 		ft_exit (1);
-	data->mini = mlx_new_image (data->mlx, W_S / 3, H_S / 3);
+	data->mini = mlx_new_image (data->mlx, 200, 200);
 	if (!data->mini) // ft_exit
 		ft_exit (1);
 	data->img = mlx_new_image (data->mlx, W_S, H_S);

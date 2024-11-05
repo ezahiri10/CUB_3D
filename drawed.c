@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:40:36 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/04 20:48:37 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/05 16:00:55 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,20 @@ void	put_carre(t_data *data, int x, int y, uint32_t color)
 {
 	int	i;
 	int	j;
+	int	size;
 
 	i = 0;
-	while (i < TILE_SIZE / 2)
+	size = 200 / 6;
+	while (i < size)
 	{
 		j = 0;
-		while (j < TILE_SIZE / 2)
+		while (j <  size)
 		{
-			if (x + i < 0 || x + i >= W_S / 3)
+			if ((x + i) < 0 || (x + i) > 200)
 				return ;
-			if (y + j < 0 || y + j >= H_S / 3)
+			if ((y + j) < 0 || (y + j) > 200)
 				return ;
-			mlx_put_pixel(data->mini, x + i, y + j, color);
+			mlx_put_pixel(data->mini, (x + i), (y + j), color);
 			j++;
 		}
 		i++;
@@ -79,33 +81,48 @@ void	put_carre(t_data *data, int x, int y, uint32_t color)
 
 void	render_map(t_data *data)
 {
-	double			i;
-	double			j;
-	// t_vector 	pos;
+	double			size;
+	t_vector	map;
+	t_vector	start;
+	uint32_t	color;
+	double		i;
+	double		j;
 
-	i = floor (data->player.pos.x/ TILE_SIZE) - 2;
-	if (i < 0)
-		i = 0;
-	while (i < floor (data->player.pos.x / TILE_SIZE)  + 2)
+	size = 200 / 6;
+	start.x = data->player.pos.x - (3 * TILE_SIZE);
+	start.y = data->player.pos.y - (3 * TILE_SIZE);
+	i = 0;
+	while (i < 6)
 	{
-		printf ("data->player i:%f j:%f\n", i, j);
-		j = floor (data->player.pos.y/ TILE_SIZE)  - 2;
-		if (j < 0)
-			j = 0;
-		while (j < floor (data->player.pos.y/ TILE_SIZE)  + 2)
+		j = 0;
+		while (j < 6)
 		{
-			if (data->map.map[(int)i][(int)j] == '1')
-				put_carre (data,( j * TILE_SIZE) / 2, (i * TILE_SIZE) / 2,
-					rgb (0, 255, 255, 255));
+			map.x = (start.x / TILE_SIZE) + j;
+			map.y = (start.y / TILE_SIZE) + i;
+			if (map.x >= 0 &&  map.x < data->map.width && map.y >= 0 && map.y <  data->map.height)
+			{
+				if (data->map.map[(int)map.y][(int)map.x] == '1')
+				{
+					color = rgb(0, 255, 255, 255);
+					put_carre (data, j * size, i * size, color);
+				}
+				else
+				{
+					color = rgb (255, 255, 255, 255);
+					put_carre (data, j * size, i * size, color);
+				}
+			}
 			else
-				put_carre (data, j * TILE_SIZE / 2, i * TILE_SIZE / 2,
-					rgb (255, 255, 255, 255));
-			j++;
+			{
+				color = rgb(0, 255, 255, 255);
+				put_carre (data, j * size, i * size, color);
+			}
+			j += 1;
 		}
-		i++;
+		i += 1;
 	}
-	data->mini_p.x = data->player.pos.x / 4;
-	data->mini_p.y = data->player.pos.y / 4;
-	 //put_cercle(data);
+	data->mini_p.x = 200 / 2;
+	data->mini_p.y = 200 / 2;
+	put_cercle(data);
 	// dda(data, data->mini_p, data->mini_p.x + cos (data->player.angle) * 10, data->mini_p.y + sin (data->player.angle) * 10);
 }
