@@ -6,7 +6,7 @@
 /*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 16:17:41 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/10/27 18:36:53 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/05 22:12:48 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	cast_rays(t_data *data)
 
 	i = 0;
 	data->ray = ray;
-	angle = data->player.angle - FOV / 2;
+	angle = data->player.angle - (FOV * M_PI / 180) / 2;
 	while (i < W_S)
 	{
 		data->ray[i].angle = norm_angle (angle);
@@ -129,20 +129,8 @@ void	cast_rays(t_data *data)
 		inter_h (data, i);
 		inter_v (data, i);
 		wall_distance (data, i);
-		angle += FOV / W_S;
+		angle += (FOV * M_PI / 180) / W_S;
 		i++;
 	}
 	draw_3d (data);
 }
-
-	// render_wall (data);
-	// i = 0;
-	// while (i < 1)
-	// {
-		// DDA(data->player.pos.x, data->player.pos.y, data->ray[i].inter_h.x, \
-		// 	data->ray[i].inter_h.y, data);
-		// printf("angle: %f\n", data->ray[i].distance);
-// 		DDA(data->player.pos.x, data->player.pos.y, data->ray[i].pos_wall.x, \
-// 			data->ray[i].pos_wall.y, data);
-// 		i++;
-// 	}

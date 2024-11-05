@@ -6,7 +6,7 @@
 /*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 18:06:10 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/04 09:06:02 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/05 22:13:29 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	handle_open_door(t_data *d, t_door *door)
 
 	i = floor(d->ray[W_S / 2].pos_wall.y / TILE_SIZE);
 	j = floor(d->ray[W_S / 2].pos_wall.x / TILE_SIZE);
-	if (d->ray[W_S / 2].distance <= TILE_SIZE * 1.5
+	if (d->ray[W_S / 2].distance <= TILE_SIZE * 2
 		&& d->ray[W_S / 2].h_or_v == 'h')
 	{
 		door->j = j;
@@ -28,7 +28,7 @@ void	handle_open_door(t_data *d, t_door *door)
 		else if (d->ray[W_S / 2].up_down == 'u' && d->map.map[i - 1][j] == 'D')
 			door->i = i - 1;
 	}
-	else if (d->ray[W_S / 2].distance <= TILE_SIZE * 1.5
+	else if (d->ray[W_S / 2].distance <= TILE_SIZE * 2
 		&& d->ray[W_S / 2].h_or_v == 'v')
 	{
 		door->i = i;

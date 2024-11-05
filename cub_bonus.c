@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:03:00 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/04 17:38:35 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/05 22:45:27 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	init_data(t_data *data)
 	player_dirction (data);
 	data->height = data->map.height * TILE_SIZE;
 	data->width = data->map.width * TILE_SIZE;
+	data->miniheight = data->height / 2;
+	data->miniwidth = data->width / 2;
 	data->texture = ft_malloc (sizeof (mlx_texture_t *) * 5, 1);
 	data->texture[0] = mlx_load_png (data->no_texture);
 	data->texture[1] = mlx_load_png (data->so_texture);

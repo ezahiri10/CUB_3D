@@ -6,7 +6,7 @@
 /*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:21:41 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/04 09:14:12 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/05 23:14:41 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,19 @@ void	ft_close(void)
 	}
 }
 
-void	free_txt(mlx_texture_t	**txt)
+void	free_txt(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 16)
 	{
-		if (txt[i] != NULL)
-			mlx_delete_texture (txt[i]);
+		if (data->texture[i] != NULL && i < 5)
+			mlx_delete_texture (data->texture[i]);
+		else if (data->shoot[i] != NULL && i < 9)
+			mlx_delete_texture (data->shoot[i]);
+		else if (data->reload[i] != NULL && i < 16)
+			mlx_delete_texture (data->reload[i]);
 		i++;
 	}
 }
@@ -44,7 +48,7 @@ void	ft_exit(int i)
 
 	data = get_add(NULL);
 	if (data->texture)
-		free_txt (data->texture);
+		free_txt (data);
 	if (data->mlx && data->img)
 		mlx_delete_image (data->mlx, data->img);
 	if (data->mlx)

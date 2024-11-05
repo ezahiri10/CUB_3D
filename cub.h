@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:21:56 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/04 18:05:21 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/05 22:27:23 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,18 @@
 # include "MLX42/include/MLX42/MLX42.h"
 # include <sys/time.h>
 
-
-#define RED 0xFF0000FF
+# define RED 0xFF0000FF
 # define TILE_SIZE 40
 # define H_S 864
 # define W_S 1200
-# define STEPS 10
-# define FOV	60 * M_PI / 180 
-# define ROT 2
-# define RAY TILE_SIZE / 10
+# define STEPS 15
+# define FOV 60
+# define ROT 4
+# define RAY 4
 # define BLUE 0x0000FFFF
 # define GREEN 0x00FF00FF
 
-typedef unsigned char t_color;
+typedef unsigned char	t_color;
 
 typedef struct s_vector
 {
@@ -74,7 +73,7 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	int 		j;
+	int			j;
 	bool		is_door_v;
 	bool		is_door_h;
 	double		distance;
@@ -87,7 +86,7 @@ typedef struct s_ray
 	t_vector	inter_h;
 	t_vector	p_txt;
 	char		h_or_v;
-	double			line;
+	double		line;
 }			t_ray;
 
 typedef struct s_data
@@ -103,22 +102,24 @@ typedef struct s_data
 	char			*so_texture;
 	char			*we_texture;
 	char			*ea_texture;
-	uint32_t 		*txt;
+	uint32_t		*txt;
 	t_ray			*ray;
 	t_door			*doors;
 	mlx_image_t		*mini;
-	t_vector 		mini_p;
+	double			miniwidth;
+	double			miniheight;
+	t_vector		mini_p;
 	t_player		player;
 	t_vector		door_pos;
 	double			width;
 	double			height;
 	t_map			map;
-    bool			is_shooting;
-    bool			is_reloading;
-    bool			is_open;
-    bool			is_close;
+	bool			is_shooting;
+	bool			is_reloading;
+	bool			is_open;
+	bool			is_close;
 	int				bullets;
-	mlx_image_t *bullet_text;
+	mlx_image_t		*bullet_text;
 }				t_data;
 
 typedef struct s_list
@@ -133,9 +134,8 @@ void		render_map(t_data *data);
 void		move_player(void *ptr);
 double		norm_angle(double angle);
 void		cast_rays(t_data *data);
-void		dda(t_data *data, t_vector init_p, t_vector finl_p);
+// void		dda(t_data *data, t_vector init_p, t_vector finl_p);
 double		calcul_dis(t_data *data, t_vector pos);
-void 		render_wall (t_data *data);
 void		first_point_h(t_data *data, int i);
 void		first_point_v(t_data *data, int i);
 void		get_derictions(t_data *data, int i);
@@ -159,52 +159,52 @@ void		open_close_door(void *ptr);
 
 //bonus parsing
 
-int		check_valide_map_name(char *map_name);
-void 	parsing_bonus(t_data *data, char *av);
-void	handl_error_missage(char *missage);
-int		is_textur_or_f_c(char *line);
-void	handle_start_last_of_map(char *line);
-void 	ft_copy_map(char **map, t_data *data, int start_index, int size);
-void	add_textur_or_f_c(char *line, t_data *data, int *elem);
-void	add_map_bonus(t_data *data, int i);
-int		ft_skipe_spaces(char *line, int i);
-int		is_player(char c);
-int		is_map_member_bonus(char c);
-void	get_color(char *line, t_data *data, int type);
-void	add_colors(char **colors, t_data *data, int type);
+int			check_valide_map_name(char *map_name);
+void		parsing_bonus(t_data *data, char *av);
+void		handl_error_missage(char *missage);
+int			is_textur_or_f_c(char *line);
+void		handle_start_last_of_map(char *line);
+void		ft_copy_map(char **map, t_data *data, int start_index, int size);
+void		add_textur_or_f_c(char *line, t_data *data, int *elem);
+void		add_map_bonus(t_data *data, int i);
+int			ft_skipe_spaces(char *line, int i);
+int			is_player(char c);
+int			is_map_member_bonus(char c);
+void		get_color(char *line, t_data *data, int type);
+void		add_colors(char **colors, t_data *data, int type);
 
 //get_line
 
-char	*get_line(int fd);
-char	*line(char *s);
-char	*rest_of_str(char *s);
-char	*read_line(char *s, int fd);
-size_t	ft_countlen(const char *s);
-int		ft_newline(char *s);
+char		*get_line(int fd);
+char		*line(char *s);
+char		*rest_of_str(char *s);
+char		*read_line(char *s, int fd);
+size_t		ft_countlen(const char *s);
+int			ft_newline(char *s);
 
 //utils
 
-void	*ft_memset(void *b, int c, size_t len);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strtrim(char const *s1, char const *set);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-size_t	ft_strlen(const char *s);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strdup(const char *s1);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putendl_fd(char *s, int fd);
-long	ft_atoi(const char *str);
-int		ft_isdigit(int c);
-void	*ft_malloc(size_t size, int mod);
-void	*get_add(void *ptr);
-void	ft_exit(int i);
-char	**ft_split(char const *s, char c, bool remove);
-char	*ft_strchr(const char *s, int c);
-t_list	*ft_lstnew(void *content);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstclear(t_list **lst, void (*del)(void*));
-void	ft_exit(int i);
-char	*ft_itoa(int n);
+void		*ft_memset(void *b, int c, size_t len);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
+char		*ft_strtrim(char const *s1, char const *set);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t		ft_strlen(const char *s);
+size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char		*ft_strjoin(char *s1, char *s2);
+char		*ft_strdup(const char *s1);
+void		ft_putstr_fd(char *s, int fd);
+void		ft_putendl_fd(char *s, int fd);
+long		ft_atoi(const char *str);
+int			ft_isdigit(int c);
+void		*ft_malloc(size_t size, int mod);
+void		*get_add(void *ptr);
+void		ft_exit(int i);
+char		**ft_split(char const *s, char c, bool remove);
+char		*ft_strchr(const char *s, int c);
+t_list		*ft_lstnew(void *content);
+void		ft_lstadd_back(t_list **lst, t_list *new);
+void		ft_lstclear(t_list **lst, void (*del)(void*));
+void		ft_exit(int i);
+char		*ft_itoa(int n);
 
 #endif 

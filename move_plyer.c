@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_plyer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:18:10 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/04 18:22:31 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/05 21:34:37 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	check_move(t_data *data, double new_x, double new_y)
 	i = 0;
 	pos.x = new_x + data->player.pos.x;
 	pos.y = new_y + data->player.pos.y;
-	rest = TILE_SIZE / 10;
+	rest = TILE_SIZE / 8;
 	while (i < 360)
 	{
 		alpha = i * M_PI / 180;
@@ -100,5 +100,4 @@ void	move_player(void *ptr)
 	if (mlx_is_key_down (data->mlx, MLX_KEY_RIGHT))
 		data->player.angle = norm_angle(data->player.angle + 2 * M_PI / 180);
 	cast_rays (data);
-	render_map (data);
 }

@@ -6,7 +6,7 @@
 /*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:25:20 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/04 09:22:44 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/05 23:02:57 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	draw_fl_cl(t_data *data, int i)
 		y = 0;
 	while (x <= y)
 	{
-		put_pixel (data->img, i, x, data->map.floor);
+		put_pixel (data->img, i, x, data->map.ceiling);
 		x++;
 	}
 	x = H_S / 2 + data->ray[i].line / 2;
@@ -63,7 +63,7 @@ void	draw_fl_cl(t_data *data, int i)
 	y = H_S;
 	while (x <= y)
 	{
-		put_pixel (data->img, i, x, data->map.ceiling);
+		put_pixel (data->img, i, x, data->map.floor);
 		x++;
 	}
 }

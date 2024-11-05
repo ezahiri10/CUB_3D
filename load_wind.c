@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_wind.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:34:51 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/05 10:05:42 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/05 23:25:49 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,14 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 
 void	frames(void *ptr)
 {
+	t_data	*data;
+
+	data = (t_data *)ptr;
 	move_player(ptr);
 	shoot_sprit_animation(ptr);
 	reload_sprit_animation(ptr);
 	open_close_door(ptr);
+	render_map (data);
 }
 
 void	load_wind(t_data *data)

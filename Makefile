@@ -9,7 +9,7 @@ RM = rm -f
 
 NAME = Cub3D
 
-MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" $(LIBFT) $(DIRMLX) #-fsanitize=address -g
+MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" $(DIRMLX) #-fsanitize=address -g
 
 SRC = cub_bonus.c render_utils.c load_wind.c drawed.c  move_plyer.c cast_rays.c dda.c \
 		render_wall.c first_point.c draw_3d.c sprit.c sprit_utils.c door.c \

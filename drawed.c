@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawed.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:40:36 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/05 16:00:55 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/05 23:25:39 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,20 @@ int	put_cercle(t_data *data)
 	int			i;
 	int			j;
 
-	pos.x = data->mini_p.x;
-	pos.y = data->mini_p.y;
+	pos.x = 100;
+	pos.y = 100;
 	i = pos.y - RAY;
-	j = pos.x - RAY;
 	while (i <= pos.y + RAY)
 	{
 		j = pos.x - RAY;
 		while (j <= pos.x + RAY)
 		{
 			if (pow(j - pos.x, 2) + pow(i - pos.y, 2) <= pow(RAY, 2))
-				put_pixel (data->mini, j, i, rgb (0, 255, 0, 255));
+			{
+				if (j < 0 || j >= 200 || i < 0 || i >= 200)
+					return (0);
+				mlx_put_pixel(data->mini, j, i, rgb (255, 0, 0, 255));
+			}
 			j++;
 		}
 		i++;
@@ -54,75 +57,56 @@ int	put_cercle(t_data *data)
 	return (0);
 }
 
-void	put_carre(t_data *data, int x, int y, uint32_t color)
+void	ft_rest_mini_map(t_data *data)
 {
-	int	i;
-	int	j;
-	int	size;
+	double			i;
+	double			j;
 
 	i = 0;
-	size = 200 / 6;
-	while (i < size)
+	while (i < 200)
 	{
 		j = 0;
-		while (j <  size)
+		while (j < 200)
 		{
-			if ((x + i) < 0 || (x + i) > 200)
-				return ;
-			if ((y + j) < 0 || (y + j) > 200)
-				return ;
-			mlx_put_pixel(data->mini, (x + i), (y + j), color);
+			mlx_put_pixel(data->mini, j, i, rgb (40, 40, 40, 255));
 			j++;
 		}
 		i++;
 	}
-	return ;
+}
+
+void	minimap_mlx_put_pixel(t_data *data, double x, double y, uint32_t color)
+{
+	if (x < 0 || x >= 200 || y < 0 || y >= 200)
+		return ;
+	mlx_put_pixel (data->mini, x, y, color);
 }
 
 void	render_map(t_data *data)
 {
-	double			size;
-	t_vector	map;
-	t_vector	start;
-	uint32_t	color;
-	double		i;
-	double		j;
+	double			y;
+	double			x;
+	uint32_t		color;
 
-	size = 200 / 6;
-	start.x = data->player.pos.x - (3 * TILE_SIZE);
-	start.y = data->player.pos.y - (3 * TILE_SIZE);
-	i = 0;
-	while (i < 6)
+	y = -1;
+	ft_rest_mini_map(data);
+	while (++y < data->miniheight)
 	{
-		j = 0;
-		while (j < 6)
+		x = 0;
+		while (x < data->miniwidth)
 		{
-			map.x = (start.x / TILE_SIZE) + j;
-			map.y = (start.y / TILE_SIZE) + i;
-			if (map.x >= 0 &&  map.x < data->map.width && map.y >= 0 && map.y <  data->map.height)
-			{
-				if (data->map.map[(int)map.y][(int)map.x] == '1')
-				{
-					color = rgb(0, 255, 255, 255);
-					put_carre (data, j * size, i * size, color);
-				}
-				else
-				{
-					color = rgb (255, 255, 255, 255);
-					put_carre (data, j * size, i * size, color);
-				}
-			}
+			if (data->map.map[(int)y * 2 / TILE_SIZE]
+				[(int)x * 2 / TILE_SIZE] == '1')
+				color = rgb (0, 0, 255, 255);
+			else if (data->map.map[(int)y * 2 / TILE_SIZE]
+				[(int)x * 2 / TILE_SIZE] == 'D')
+				color = rgb (0, 255, 255, 255);
 			else
-			{
-				color = rgb(0, 255, 255, 255);
-				put_carre (data, j * size, i * size, color);
-			}
-			j += 1;
+				color = rgb (0, 255, 0, 255);
+			minimap_mlx_put_pixel(data, x - data->player.pos.x / 2
+				+ 100, y - data->player.pos.y / 2 + 100, color);
+			x++;
 		}
-		i += 1;
 	}
-	data->mini_p.x = 200 / 2;
-	data->mini_p.y = 200 / 2;
 	put_cercle(data);
-	// dda(data, data->mini_p, data->mini_p.x + cos (data->player.angle) * 10, data->mini_p.y + sin (data->player.angle) * 10);
 }
