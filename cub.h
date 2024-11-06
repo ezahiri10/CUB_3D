@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:21:56 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/05 22:27:23 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:08:21 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ void		init_reload_paths(char *paths[9]);
 void		ft_print_bullet(t_data *data);
 void		close_doors(t_data *data);
 void		open_close_door(void *ptr);
+void		mouse_events(double x, double y, void *para);
 
 //bonus parsing
 
@@ -204,7 +205,6 @@ char		*ft_strchr(const char *s, int c);
 t_list		*ft_lstnew(void *content);
 void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_lstclear(t_list **lst, void (*del)(void*));
-void		ft_exit(int i);
 char		*ft_itoa(int n);
 
 #endif 

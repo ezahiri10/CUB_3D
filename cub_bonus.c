@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:03:00 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/05 22:45:27 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:09:58 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	init_data(t_data *data)
 
 void	f(void)
 {
-	system("lsof -c Cub3D_BON");
+	// system("lsof -c Cub3D");
+	system("leaks Cub3D");
 }
 
 int	main(int ac, char **av)

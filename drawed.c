@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawed.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:40:36 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/05 23:25:39 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/06 10:51:59 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_rest_mini_map(t_data *data)
 		j = 0;
 		while (j < 200)
 		{
-			mlx_put_pixel(data->mini, j, i, rgb (40, 40, 40, 255));
+			mlx_put_pixel(data->mini, j, i, rgb (255, 255, 255, 255));
 			j++;
 		}
 		i++;

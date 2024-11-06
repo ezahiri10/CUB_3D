@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_plyer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:18:10 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/05 21:34:37 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/06 10:54:32 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	check_move(t_data *data, double new_x, double new_y)
 	i = 0;
 	pos.x = new_x + data->player.pos.x;
 	pos.y = new_y + data->player.pos.y;
-	rest = TILE_SIZE / 8;
+	rest = TILE_SIZE / 4;
 	while (i < 360)
 	{
 		alpha = i * M_PI / 180;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprit.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 17:52:12 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/10/27 18:33:30 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:12:16 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_load_gun_shoot(t_data *d)
 		d->shoot_img[i] = mlx_texture_to_image(d->mlx, d->shoot[i]);
 		if (!d->shoot_img[i])
 			handl_error_missage("Error\nCan't convert texture to img");
-		if (mlx_image_to_window(d->mlx, d->shoot_img[i], 0, 0) < 0)
+		if (mlx_image_to_window(d->mlx, d->shoot_img[i], 0, 0) == -1)
 			handl_error_missage("Error\nCan't add image to window");
 		d->shoot_img[i]->instances[0].enabled = false;
 		i++;
@@ -113,4 +113,4 @@ void	reload_sprit_animation(void *ptr)
 		}
 		usleep(50000);
 	}
-}
+}      

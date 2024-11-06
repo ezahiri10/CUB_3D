@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_wind.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:34:51 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/05 23:25:49 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/06 10:33:41 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,13 @@ void	frames(void *ptr)
 void	load_wind(t_data *data)
 {
 	init_mlx (data);
+	mlx_set_cursor_mode (data->mlx, MLX_MOUSE_DISABLED);
 	ft_load_gun_shoot(data);
 	ft_load_gun_reload(data);
 	data->bullet_text = mlx_put_string(data->mlx, "Bullets: 9", 1050, 0);
 	data->bullets = 9;
 	mlx_loop_hook (data->mlx, frames, data);
+	mlx_cursor_hook (data->mlx, mouse_events, data);
 	mlx_key_hook(data->mlx, key_hook, data);
 	mlx_loop(data->mlx);
 }

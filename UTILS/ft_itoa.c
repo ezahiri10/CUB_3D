@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 09:02:21 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/04 09:04:32 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:06:40 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_itoa(int n)
 	nb = n;
 	if (n < 0)
 		nb = -nb;
-	s = malloc(sizeof(char) * (len + 1));
+	s = ft_malloc(sizeof(char) * (len + 1), 1);
 	if (!s)
 		return (NULL);
 	s[len] = '\0';
