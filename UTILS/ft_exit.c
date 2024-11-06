@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:21:41 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/06 14:15:25 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/06 15:40:21 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void	ft_close(void)
 			break ;
 		i++;
 	}
+}
+void	handl_error_missage(char *missage)
+{
+	ft_putstr_fd(missage, 2);
+	ft_exit(1);
 }
 
 void	free_txt(t_data *data)
@@ -49,8 +54,6 @@ void	ft_exit(int i)
 	data = get_add(NULL);
 	if (data->texture)
 		free_txt (data);
-	if (data->mlx && data->img)
-		mlx_delete_image (data->mlx, data->img);
 	if (data->mlx)
 		mlx_terminate (data->mlx);
 	ft_malloc(0, 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_analyse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 14:01:02 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/04 09:05:15 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:14:49 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ int	check_map_position(t_data *data, char **map, int i, int j)
 			handle_door(data, map, i, j) == true)
 			return (player_counter);
 		else
-			handl_error_missage("Error\nInvalid map1");
+			handl_error_missage("Error\nInvalid map");
 	}
 	else if (map[i][j] != ' ' && map[i][j] != '1')
-		handl_error_missage("Error\nInvalid map2");
+		handl_error_missage("Error\nInvalid map");
 	return (player_counter);
 }
 
@@ -84,14 +84,14 @@ void	check_map_member_bonus(t_data *data, char **map, int size
 				if (is_map_member_or_space_bonus(map[i][j]))
 					player_counter += check_map_position(data, map, i, j);
 				else
-					handl_error_missage("Error\nInvalid map3");
+					handl_error_missage("Error\nInvalid map");
 				j++;
 			}
 		}
 		i++;
 	}
 	if (player_counter != 1)
-		handl_error_missage("Error\nInvalid map4");
+		handl_error_missage("Error\nInvalid map");
 }
 
 void	add_map_bonus(t_data *data, int i)

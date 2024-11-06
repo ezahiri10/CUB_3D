@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:34:51 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/06 10:33:41 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/06 16:55:19 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_mlx(t_data *data)
 	if (!data->mlx)
 		ft_exit (1);
 	data->mini = mlx_new_image (data->mlx, 200, 200);
-	if (!data->mini) // ft_exit
+	if (!data->mini)
 		ft_exit (1);
 	data->img = mlx_new_image (data->mlx, W_S, H_S);
 	if (!data->img)
@@ -62,7 +62,7 @@ void	frames(void *ptr)
 	t_data	*data;
 
 	data = (t_data *)ptr;
-	move_player(ptr);
+	move_player(data);
 	shoot_sprit_animation(ptr);
 	reload_sprit_animation(ptr);
 	open_close_door(ptr);
@@ -72,7 +72,7 @@ void	frames(void *ptr)
 void	load_wind(t_data *data)
 {
 	init_mlx (data);
-	mlx_set_cursor_mode (data->mlx, MLX_MOUSE_DISABLED);
+	mlx_set_cursor_mode (data->mlx, MLX_MOUSE_HIDDEN);
 	ft_load_gun_shoot(data);
 	ft_load_gun_reload(data);
 	data->bullet_text = mlx_put_string(data->mlx, "Bullets: 9", 1050, 0);

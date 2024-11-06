@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 12:18:10 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/06 10:54:32 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/06 16:55:56 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,8 @@ void	ft_mover(t_data *data, char move)
 	check_move(data, pos.x, pos.y);
 }
 
-void	move_player(void *ptr)
+void	move_player(t_data *data)
 {
-	t_data	*data;
-
-	data = (t_data *)ptr;
 	if (mlx_is_key_down (data->mlx, MLX_KEY_ESCAPE))
 		ft_exit (0);
 	if (mlx_is_key_down (data->mlx, MLX_KEY_D))
@@ -96,8 +93,8 @@ void	move_player(void *ptr)
 	if (mlx_is_key_down (data->mlx, MLX_KEY_S))
 		ft_mover (data, 'S');
 	if (mlx_is_key_down (data->mlx, MLX_KEY_LEFT))
-		data->player.angle = norm_angle(data->player.angle - 2 * M_PI / 180);
+		data->player.angle = norm_angle(data->player.angle - 3 * M_PI / 180);
 	if (mlx_is_key_down (data->mlx, MLX_KEY_RIGHT))
-		data->player.angle = norm_angle(data->player.angle + 2 * M_PI / 180);
+		data->player.angle = norm_angle(data->player.angle + 3 * M_PI / 180);
 	cast_rays (data);
 }

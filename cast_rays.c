@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 16:17:41 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/05 22:12:48 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:09:20 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ void	reset_img(t_data *data)
 
 void	cast_rays(t_data *data)
 {
-	t_ray	ray[(int)W_S];
-	int		i;
+	t_ray	ray[W_S];
 	double	angle;
+	int		i;
 
 	i = 0;
 	data->ray = ray;

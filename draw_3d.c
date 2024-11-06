@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_3d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 11:25:20 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/05 23:02:57 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:59:29 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,11 @@ void	put_txt(t_data *data, int i, double y, int j)
 {
 	double		x_txt;
 	double		y_txt;
-	double		pos;
 	uint32_t	color;
 
 	x_txt = data->ray[i].p_txt.x;
 	y_txt = data->ray[i].p_txt.y;
-	pos = (data->texture[j]->width * y_txt) + x_txt;
-	if (i < 0 || y < 0 || i > W_S || y > H_S
-		|| pos < 0 || pos > data->texture[j]->width * data->texture[j]->height)
+	if (i < 0 || y < 0 || i > W_S || y > H_S)
 		return ;
 	color = get_texture_pixel(data->texture[j], x_txt, y_txt);
 	put_pixel (data->img, i, y, color);

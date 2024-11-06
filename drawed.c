@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:40:36 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/06 10:51:59 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/06 17:29:51 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,33 +30,6 @@ void	get_texture(t_data *data, int i)
 	}
 }
 
-int	put_cercle(t_data *data)
-{
-	t_vector	pos;
-	int			i;
-	int			j;
-
-	pos.x = 100;
-	pos.y = 100;
-	i = pos.y - RAY;
-	while (i <= pos.y + RAY)
-	{
-		j = pos.x - RAY;
-		while (j <= pos.x + RAY)
-		{
-			if (pow(j - pos.x, 2) + pow(i - pos.y, 2) <= pow(RAY, 2))
-			{
-				if (j < 0 || j >= 200 || i < 0 || i >= 200)
-					return (0);
-				mlx_put_pixel(data->mini, j, i, rgb (255, 0, 0, 255));
-			}
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
 void	ft_rest_mini_map(t_data *data)
 {
 	double			i;
@@ -73,6 +46,30 @@ void	ft_rest_mini_map(t_data *data)
 		}
 		i++;
 	}
+}
+
+int	put_cercle(t_data *data)
+{
+	t_vector	pos;
+	int			i;
+	int			j;
+
+	pos.x = 100;
+	pos.y = 100;
+	i = pos.y - RAY;
+	j = pos.x - RAY;
+	while (i <= pos.y + RAY)
+	{
+		j = pos.x - RAY;
+		while (j <= pos.x + RAY)
+		{
+			if (pow(j - pos.x, 2) + pow(i - pos.y, 2) <= pow(RAY, 2))
+				put_pixel (data->mini, j, i, rgb (255, 0, 0, 255));
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
 
 void	minimap_mlx_put_pixel(t_data *data, double x, double y, uint32_t color)

@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:03:00 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/06 12:09:58 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/06 15:26:14 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ void	init_data(t_data *data)
 	data->player.pos.y = data->map.i * TILE_SIZE + TILE_SIZE / 2;
 	data->player.pos.x = data->map.j * TILE_SIZE + TILE_SIZE / 2;
 	player_dirction (data);
-	data->height = data->map.height * TILE_SIZE;
-	data->width = data->map.width * TILE_SIZE;
-	data->miniheight = data->height / 2;
-	data->miniwidth = data->width / 2;
+	data->miniheight = (data->map.height * TILE_SIZE) / 2;
+	data->miniwidth = (data->map.width * TILE_SIZE) / 2;
 	data->texture = ft_malloc (sizeof (mlx_texture_t *) * 5, 1);
 	data->texture[0] = mlx_load_png (data->no_texture);
 	data->texture[1] = mlx_load_png (data->so_texture);

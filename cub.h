@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:21:56 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/06 12:08:21 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/06 17:05:51 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,6 @@ typedef struct s_data
 	t_vector		mini_p;
 	t_player		player;
 	t_vector		door_pos;
-	double			width;
-	double			height;
 	t_map			map;
 	bool			is_shooting;
 	bool			is_reloading;
@@ -131,10 +129,9 @@ typedef struct s_list
 uint32_t	rgb(t_color r, t_color g, t_color b, t_color a);
 void		load_wind(t_data *data);
 void		render_map(t_data *data);
-void		move_player(void *ptr);
+void		move_player(t_data	*data);
 double		norm_angle(double angle);
 void		cast_rays(t_data *data);
-// void		dda(t_data *data, t_vector init_p, t_vector finl_p);
 double		calcul_dis(t_data *data, t_vector pos);
 void		first_point_h(t_data *data, int i);
 void		first_point_v(t_data *data, int i);
@@ -160,7 +157,6 @@ void		mouse_events(double x, double y, void *para);
 
 //bonus parsing
 
-int			check_valide_map_name(char *map_name);
 void		parsing_bonus(t_data *data, char *av);
 void		handl_error_missage(char *missage);
 int			is_textur_or_f_c(char *line);
@@ -172,7 +168,6 @@ int			ft_skipe_spaces(char *line, int i);
 int			is_player(char c);
 int			is_map_member_bonus(char c);
 void		get_color(char *line, t_data *data, int type);
-void		add_colors(char **colors, t_data *data, int type);
 
 //get_line
 

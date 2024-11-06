@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:10:49 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/04 08:58:59 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:39:39 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_valide_map_name(char *map_name)
 	return (-1);
 }
 
-int	get_all_map(t_data *data, int fd)
+void	get_all_map(t_data *data, int fd)
 {
 	char	*line;
 	char	*tmp_line;
@@ -58,7 +58,6 @@ int	get_all_map(t_data *data, int fd)
 		handl_error_missage("Error\nInvalid map7");
 	}
 	close(fd);
-	return (0);
 }
 
 void	parse_map_member_bonus(t_data *data)
@@ -125,7 +124,7 @@ void	parsing_bonus(t_data *data, char *av)
 		handl_error_missage("Error\nInvalib map name");
 	fd = open(av, O_RDONLY);
 	if (fd == -1)
-		ft_putstr_fd("Error\ncan't open the map", 2);
+		handl_error_missage("Error\ncan't open the map");
 	get_all_map(data, fd);
 	parse_map_member_bonus(data);
 	get_all_doors(data);

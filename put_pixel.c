@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handl_error.c                                   :+:      :+:    :+:   */
+/*   put_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/13 13:59:09 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/04 08:56:09 by sel-hasn         ###   ########.fr       */
+/*   Created: 2024/09/10 17:55:21 by ezahiri           #+#    #+#             */
+/*   Updated: 2024/11/06 17:06:57 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "cub.h"
 
-void	handl_error_missage(char *missage)
+void	put_pixel(mlx_image_t *img, double x, double y, double color)
 {
-	ft_putstr_fd(missage, 2);
-	ft_exit(1);
+	if (x < 0 || x >= W_S)
+		return ;
+	if (y < 0 || y >= H_S)
+		return ;
+	mlx_put_pixel (img, x, y, color);
 }
