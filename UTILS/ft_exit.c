@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 15:21:41 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/06 15:40:21 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/06 21:22:54 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_close(void)
 		i++;
 	}
 }
+
 void	handl_error_missage(char *missage)
 {
 	ft_putstr_fd(missage, 2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 18:06:10 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/05 22:13:29 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/06 21:02:28 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,11 @@ void	close_doors(t_data *data)
 	}
 }
 
-void	open_close_door(void *ptr)
+void	open_close_door(t_data	*data)
 {
-	t_data	*data;
 	int		t;
 	t_door	door;
 
-	data = (t_data *)ptr;
 	if (data->is_close == true)
 	{
 		data->is_close = false;

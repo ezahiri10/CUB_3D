@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:34:51 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/06 16:55:19 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/06 21:09:36 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ void	frames(void *ptr)
 
 	data = (t_data *)ptr;
 	move_player(data);
-	shoot_sprit_animation(ptr);
-	reload_sprit_animation(ptr);
-	open_close_door(ptr);
+	shoot_sprit_animation(data);
+	reload_sprit_animation(data);
+	open_close_door(data);
 	render_map (data);
 }
 

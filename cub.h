@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:21:56 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/06 17:05:51 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/06 21:01:15 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,15 +144,15 @@ void		put_pixel(mlx_image_t *img, double x, double y, double color);
 uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
 void		get_texture(t_data *data, int i);
 int			get_door_index(t_data *data, int i, int j);
-void		reload_sprit_animation(void *ptr);
-void		shoot_sprit_animation(void *ptr);
+void		reload_sprit_animation(t_data *data);
+void		shoot_sprit_animation(t_data *data);
 void		ft_load_gun_reload(t_data *d);
 void		ft_load_gun_shoot(t_data *d);
 void		init_paths(char *paths[9]);
 void		init_reload_paths(char *paths[9]);
 void		ft_print_bullet(t_data *data);
 void		close_doors(t_data *data);
-void		open_close_door(void *ptr);
+void		open_close_door(t_data *data);
 void		mouse_events(double x, double y, void *para);
 
 //bonus parsing

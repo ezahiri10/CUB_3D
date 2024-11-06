@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 17:52:12 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/06 16:50:14 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/06 20:57:24 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,10 @@ void	ft_load_gun_reload(t_data *d)
 	}
 }
 
-void	shoot_sprit_animation(void *ptr)
+void	shoot_sprit_animation(t_data *data)
 {
-	t_data		*data;
 	static int	i;
 
-	data = (t_data *)ptr;
 	if (data->is_shooting)
 	{
 		if (i > 0)
@@ -86,12 +84,10 @@ void	shoot_sprit_animation(void *ptr)
 	}
 }
 
-void	reload_sprit_animation(void *ptr)
+void	reload_sprit_animation(t_data *data)
 {
-	t_data		*data;
 	static int	i;
 
-	data = (t_data *)ptr;
 	if (data->bullets == 0 && !data->is_shooting)
 		data->is_reloading = true;
 	if (data->is_reloading)
@@ -113,4 +109,4 @@ void	reload_sprit_animation(void *ptr)
 		}
 		usleep(50000);
 	}
-}      
+}

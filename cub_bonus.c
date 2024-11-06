@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:03:00 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/06 15:26:14 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/06 21:22:39 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	init_data(t_data *data)
 
 void	f(void)
 {
-	// system("lsof -c Cub3D");
 	system("leaks Cub3D");
 }
 
