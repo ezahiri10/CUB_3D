@@ -1,17 +1,17 @@
 CC = cc
 
-DIRMLX = /Users/$(USER)/Desktop/CUB_3D/libmlx42.a
+DIRMLX = MLX42/libmlx42.a
 
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
 NAME_BONUS = cub3D_bonus
 
-MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" $(DIRMLX) #-fsanitize=address -g
+MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" $(DIRMLX)
 
-SRC = BONUS/cub_bonus_bonus.c BONUS/render_utils_bonus.c BONUS/load_wind_bonus.c BONUS/drawed_bonus.c  BONUS/move_plyer_bonus.c BONUS/cast_rays_bonus.c BONUS/put_pixel_bonus.c \
+SRC_BONUS = BONUS/cub_bonus.c BONUS/render_utils_bonus.c BONUS/load_wind_bonus.c BONUS/drawed_bonus.c  BONUS/move_plyer_bonus.c BONUS/cast_rays_bonus.c BONUS/put_pixel_bonus.c \
 		BONUS/render_wall_bonus.c BONUS/first_point_bonus.c BONUS/draw_3d_bonus.c BONUS/sprit_bonus.c BONUS/sprit_utils_bonus.c BONUS/door_bonus.c  BONUS/mouse_events_bonus.c \
 		BONUS/parsing/parsing_bonus.c \
 		BONUS/parsing/utils_bonus.c  \
@@ -39,22 +39,22 @@ SRC = BONUS/cub_bonus_bonus.c BONUS/render_utils_bonus.c BONUS/load_wind_bonus.c
 		BONUS/UTILS/ft_exit_bonus.c \
 		BONUS/UTILS/get_line_utils_bonus.c
 
-OBJ_BONUS = $(SRC:.c=.o)
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 
 bonus : $(NAME_BONUS)
 
-BONUS/%.o : BONUS/%.c cub_bonus.h
-	$(CC)  $(FLAGS) -c  $<   -o $@
-
 $(NAME_BONUS) : $(OBJ_BONUS)
-	$(CC) $(MLXFLAGS) $(SRC) -o $(NAME_BONUS) 
+	$(CC) $(MLXFLAGS) $(SRC_BONUS) -o $(NAME_BONUS) 
+
+BONUS/%.o : BONUS/%.c BONUS/cub_bonus.h
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean :
 	$(RM) $(OBJ_BONUS)
 
 fclean : clean
-	$(RM) $(NAME)
+	$(RM) $(NAME_BONUS)
 
 re : fclean bonus
 

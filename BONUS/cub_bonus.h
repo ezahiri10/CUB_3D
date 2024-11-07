@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_bonus.h                                              :+:      :+:    :+:   */
+/*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 12:21:56 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/07 14:57:50 by ezahiri          ###   ########.fr       */
+/*   Created: 2024/11/07 15:57:02 by ezahiri           #+#    #+#             */
+/*   Updated: 2024/11/07 15:58:22 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB_BONUS_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 1000
 # endif
 
 # include <stdio.h>
@@ -24,7 +24,7 @@
 # include <unistd.h>
 # include <math.h>
 # include <fcntl.h>
-# include ".MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/.MLX42.h"
 # include <sys/time.h>
 
 # define TILE_SIZE 40
@@ -122,24 +122,24 @@ typedef struct s_list
 	struct s_list	*next;
 }				t_list;
 
+void		put_pixel(mlx_image_t *img, double x, double y, double color);
+uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
+uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
 uint32_t	rgb(t_color r, t_color g, t_color b, t_color a);
+bool		check_wall(t_data *data, double x, double y);
+bool		check_door(t_data *data, double x, double y);
+double		calcul_dis(t_data *data, t_vector pos);
+int			get_door_index(t_data *data, int i, int j);
+void		get_derictions(t_data *data, int i);
 void		load_wind(t_data *data);
 void		render_map(t_data *data);
 void		move_player(t_data	*data);
 double		norm_angle(double angle);
 void		cast_rays(t_data *data);
-double		calcul_dis(t_data *data, t_vector pos);
 void		first_point_h(t_data *data, int i);
 void		first_point_v(t_data *data, int i);
-void		get_derictions(t_data *data, int i);
-bool		check_wall(t_data *data, double x, double y);
-bool		check_door(t_data *data, double x, double y);
 void		draw_3d(t_data *data);
-uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
-void		put_pixel(mlx_image_t *img, double x, double y, double color);
-uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
 void		get_texture(t_data *data, int i);
-int			get_door_index(t_data *data, int i, int j);
 void		reload_sprit_animation(t_data *data);
 void		shoot_sprit_animation(t_data *data);
 void		ft_load_gun_reload(t_data *d);
