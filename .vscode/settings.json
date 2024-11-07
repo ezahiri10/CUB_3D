@@ -3,6 +3,8 @@
         "cub.h": "c",
         "libft.h": "c",
         "stdlib.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        ".mlx42.h": "c",
+        "stdbool.h": "c"
     }
 }

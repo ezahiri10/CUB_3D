@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:10:49 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/03 17:25:32 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/07 19:19:18 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	parse_map_member(t_data *data)
 		}
 		else
 		{
-			if (elem != 6)
+			if (elem != 6 || is_textur_or_f_c(data->map.map[i]) == 2)
 				handl_error_missage("Error\nInvalid map member");
 			add_map(data, i);
 			break ;

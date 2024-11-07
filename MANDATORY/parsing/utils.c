@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 14:01:51 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/02 22:22:16 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/07 21:05:06 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,29 @@ int	ft_skipe_spaces(char *line, int i)
 
 int	is_textur_or_f_c(char *line)
 {
-	int	i;
+	int			i;
+	static int	elme_check[6];
 
 	i = 0;
 	while (line[i] != '\0' && line[i] == ' ')
 		i++;
 	if (ft_strncmp(&line[i], "NO ", 3) == 0)
-		return (1);
+		return (elme_check[0]++, 1);
 	else if (ft_strncmp(&line[i], "SO ", 3) == 0)
-		return (1);
+		return (elme_check[1]++, 1);
 	else if (ft_strncmp(&line[i], "WE ", 3) == 0)
-		return (1);
+		return (elme_check[2]++, 1);
 	else if (ft_strncmp(&line[i], "EA ", 3) == 0)
-		return (1);
+		return (elme_check[3]++, 1);
 	else if (ft_strncmp(&line[i], "F ", 2) == 0)
-		return (1);
+		return (elme_check[4]++, 1);
 	else if (ft_strncmp(&line[i], "C ", 2) == 0)
-		return (1);
+		return (elme_check[5]++, 1);
+	i = 0;
+	while (i < 6)
+	{
+		if (elme_check[i++] != 1)
+			return (2);
+	}
 	return (0);
 }
