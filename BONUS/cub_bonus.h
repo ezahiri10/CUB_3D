@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:57:02 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/07 15:58:22 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/07 16:30:22 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,12 @@
 #  define BUFFER_SIZE 1000
 # endif
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
-# include <string.h>
 # include <unistd.h>
 # include <math.h>
 # include <fcntl.h>
 # include "../MLX42/.MLX42.h"
-# include <sys/time.h>
 
 # define TILE_SIZE 40
 # define H_S 864
@@ -90,8 +87,8 @@ typedef struct s_data
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	mlx_texture_t	**texture;
 	mlx_texture_t	**shoot;
+	mlx_texture_t	**texture;
 	mlx_image_t		**shoot_img;
 	mlx_texture_t	**reload;
 	mlx_image_t		**reload_img;
@@ -122,80 +119,82 @@ typedef struct s_list
 	struct s_list	*next;
 }				t_list;
 
+/*========================= mlx_utils =========================*/
+
 void		put_pixel(mlx_image_t *img, double x, double y, double color);
 uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
 uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
 uint32_t	rgb(t_color r, t_color g, t_color b, t_color a);
+void		mouse_events(double x, double y, void *para);
 bool		check_wall(t_data *data, double x, double y);
 bool		check_door(t_data *data, double x, double y);
-double		calcul_dis(t_data *data, t_vector pos);
 int			get_door_index(t_data *data, int i, int j);
-void		get_derictions(t_data *data, int i);
-void		load_wind(t_data *data);
-void		render_map(t_data *data);
-void		move_player(t_data	*data);
-double		norm_angle(double angle);
-void		cast_rays(t_data *data);
-void		first_point_h(t_data *data, int i);
-void		first_point_v(t_data *data, int i);
-void		draw_3d(t_data *data);
-void		get_texture(t_data *data, int i);
-void		reload_sprit_animation(t_data *data);
+double		calcul_dis(t_data *data, t_vector pos);
 void		shoot_sprit_animation(t_data *data);
+void		reload_sprit_animation(t_data *data);
+void		get_derictions(t_data *data, int i);
+void		first_point_v(t_data *data, int i);
+void		first_point_h(t_data *data, int i);
+void		init_reload_paths(char *paths[9]);
+void		get_texture(t_data *data, int i);
+void		ft_print_bullet(t_data *data);
+void		open_close_door(t_data *data);
 void		ft_load_gun_reload(t_data *d);
 void		ft_load_gun_shoot(t_data *d);
 void		init_paths(char *paths[9]);
-void		init_reload_paths(char *paths[9]);
-void		ft_print_bullet(t_data *data);
+void		move_player(t_data	*data);
 void		close_doors(t_data *data);
-void		open_close_door(t_data *data);
-void		mouse_events(double x, double y, void *para);
+void		render_map(t_data *data);
+double		norm_angle(double angle);
+void		cast_rays(t_data *data);
+void		load_wind(t_data *data);
+void		draw_3d(t_data *data);
 
-//bonus parsing
+/*========================= parsing =========================*/
 
-void		parsing_bonus(t_data *data, char *av);
-void		handl_error_missage(char *missage);
-int			is_textur_or_f_c(char *line);
-void		handle_start_last_of_map(char *line);
 void		ft_copy_map(char **map, t_data *data, int start_index, int size);
 void		add_textur_or_f_c(char *line, t_data *data, int *elem);
+void		get_color(char *line, t_data *data, int type);
+void		parsing_bonus(t_data *data, char *av);
+void		handle_start_last_of_map(char *line);
 void		add_map_bonus(t_data *data, int i);
 int			ft_skipe_spaces(char *line, int i);
-int			is_player(char c);
+void		handl_error_missage(char *missage);
+int			is_textur_or_f_c(char *line);
 int			is_map_member_bonus(char c);
-void		get_color(char *line, t_data *data, int type);
+int			is_player(char c);
 
-//get_line
+/*========================= get_next_line =========================*/
 
-char		*get_line(int fd);
 char		*line(char *s);
+char		*get_line(int fd);
+int			ft_newline(char *s);
 char		*rest_of_str(char *s);
 char		*read_line(char *s, int fd);
 size_t		ft_countlen(const char *s);
-int			ft_newline(char *s);
 
-//utils
+/*========================= utils =========================*/
 
-void		*ft_memset(void *b, int c, size_t len);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
-char		*ft_strtrim(char const *s1, char const *set);
-int			ft_strncmp(const char *s1, const char *s2, size_t n);
+void		ft_exit(int i);
+char		*ft_itoa(int n);
+int			ft_isdigit(int c);
+void		*get_add(void *ptr);
+long		ft_atoi(const char *str);
 size_t		ft_strlen(const char *s);
-size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
-char		*ft_strjoin(char *s1, char *s2);
+t_list		*ft_lstnew(void *content);
 char		*ft_strdup(const char *s1);
+char		*ft_strjoin(char *s1, char *s2);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
-long		ft_atoi(const char *str);
-int			ft_isdigit(int c);
-void		*ft_malloc(size_t size, int mod);
-void		*get_add(void *ptr);
-void		ft_exit(int i);
-char		**ft_split(char const *s, char c, bool remove);
 char		*ft_strchr(const char *s, int c);
-t_list		*ft_lstnew(void *content);
+void		*ft_malloc(size_t size, int mod);
+void		*ft_memset(void *b, int c, size_t len);
 void		ft_lstadd_back(t_list **lst, t_list *new);
+char		*ft_strtrim(char const *s1, char const *set);
 void		ft_lstclear(t_list **lst, void (*del)(void*));
-char		*ft_itoa(int n);
+char		**ft_split(char const *s, char c, bool remove);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif 
