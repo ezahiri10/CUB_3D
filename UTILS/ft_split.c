@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 11:54:54 by sel-hasn          #+#    #+#             */
-/*   Updated: 2024/11/03 14:47:25 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/07 15:42:22 by sel-hasn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	**splited(char **strs, const char *s, char c, bool remove)
 	k = 0;
 	while (*s)
 	{
-		while (*s == c)
+		while (*s == c && remove == false)
 			s++;
 		i = 0;
 		while (s[i] && s[i] != c)
