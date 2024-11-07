@@ -12,7 +12,7 @@ NAME_BONUS = cub3D_bonus
 NAME = cub3D
 
 
-MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" $(DIRMLX)
+MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw3 -L"/Users/$(USER)/.brew/opt/glfw/lib/" $(DIRMLX)
 
 SRC = MANDATORY/cub.c MANDATORY/render_utils.c MANDATORY/load_wind.c MANDATORY/get_texture.c  MANDATORY/move_plyer.c MANDATORY/cast_rays.c MANDATORY/put_pixel.c \
 		 MANDATORY/first_point.c MANDATORY/draw_3d.c \
