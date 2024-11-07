@@ -7,54 +7,55 @@ FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 RM = rm -f
 
-NAME = Cub3D
+NAME_BONUS = cub3D_bonus
 
 MLXFLAGS =  -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" $(DIRMLX) #-fsanitize=address -g
 
-SRC = cub_bonus.c render_utils.c load_wind.c drawed.c  move_plyer.c cast_rays.c put_pixel.c \
-		render_wall.c first_point.c draw_3d.c sprit.c sprit_utils.c door.c  mouse_events.c \
-		parsing/parsing.c \
-		parsing/utils.c  \
-		parsing/pars_map_member.c  \
-		parsing/map_analyse.c \
-		parsing/handle_color.c \
-		UTILS/ft_atoi.c \
-		UTILS/ft_itoa.c \
-		UTILS/ft_isdigit.c \
-		UTILS/ft_lstadd_back.c \
-		UTILS/ft_lstclear.c \
-		UTILS/ft_malloc.c \
-		UTILS/ft_memset.c \
-		UTILS/ft_putendl_fd.c \
-		UTILS/ft_split.c \
- 		UTILS/ft_strchr.c \
-		UTILS/ft_strdup.c \
-		UTILS/ft_strjoin.c \
-		UTILS/ft_strlcpy.c \
-		UTILS/ft_strlen.c \
-		UTILS/ft_strncmp.c \
-		UTILS/ft_strtrim.c \
-		UTILS/ft_substr.c \
-		UTILS/get_line.c \
-		UTILS/ft_exit.c \
-		UTILS/get_line_utils.c
+SRC = BONUS/cub_bonus_bonus.c BONUS/render_utils_bonus.c BONUS/load_wind_bonus.c BONUS/drawed_bonus.c  BONUS/move_plyer_bonus.c BONUS/cast_rays_bonus.c BONUS/put_pixel_bonus.c \
+		BONUS/render_wall_bonus.c BONUS/first_point_bonus.c BONUS/draw_3d_bonus.c BONUS/sprit_bonus.c BONUS/sprit_utils_bonus.c BONUS/door_bonus.c  BONUS/mouse_events_bonus.c \
+		BONUS/parsing/parsing_bonus.c \
+		BONUS/parsing/utils_bonus.c  \
+		BONUS/parsing/pars_map_member_bonus.c  \
+		BONUS/parsing/map_analyse_bonus.c \
+		BONUS/parsing/handle_color_bonus.c \
+		BONUS/UTILS/ft_atoi_bonus.c \
+		BONUS/UTILS/ft_itoa_bonus.c \
+		BONUS/UTILS/ft_isdigit_bonus.c \
+		BONUS/UTILS/ft_lstadd_back_bonus.c \
+		BONUS/UTILS/ft_lstclear_bonus.c \
+		BONUS/UTILS/ft_malloc_bonus.c \
+		BONUS/UTILS/ft_memset_bonus.c \
+		BONUS/UTILS/ft_putendl_fd_bonus.c \
+		BONUS/UTILS/ft_split_bonus.c \
+ 		BONUS/UTILS/ft_strchr_bonus.c \
+		BONUS/UTILS/ft_strdup_bonus.c \
+		BONUS/UTILS/ft_strjoin_bonus.c \
+		BONUS/UTILS/ft_strlcpy_bonus.c \
+		BONUS/UTILS/ft_strlen_bonus.c \
+		BONUS/UTILS/ft_strncmp_bonus.c \
+		BONUS/UTILS/ft_strtrim_bonus.c \
+		BONUS/UTILS/ft_substr_bonus.c \
+		BONUS/UTILS/get_line_bonus.c \
+		BONUS/UTILS/ft_exit_bonus.c \
+		BONUS/UTILS/get_line_utils_bonus.c
 
-OBJ = $(SRC:.c=.o)
+OBJ_BONUS = $(SRC:.c=.o)
 
-all : $(NAME)
 
-%.o : %.c cub.h
+bonus : $(NAME_BONUS)
+
+BONUS/%.o : BONUS/%.c cub_bonus.h
 	$(CC)  $(FLAGS) -c  $<   -o $@
 
-$(NAME) : $(OBJ)
-	$(CC) $(MLXFLAGS) $(SRC) -o $(NAME) 
+$(NAME_BONUS) : $(OBJ_BONUS)
+	$(CC) $(MLXFLAGS) $(SRC) -o $(NAME_BONUS) 
 
 clean :
-	$(RM) $(OBJ)
+	$(RM) $(OBJ_BONUS)
 
 fclean : clean
 	$(RM) $(NAME)
 
-re : fclean all
+re : fclean bonus
 
 .PHONY : clean
