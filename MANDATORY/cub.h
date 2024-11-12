@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-hasn <sel-hasn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:21:56 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/07 18:22:55 by sel-hasn         ###   ########.fr       */
+/*   Updated: 2024/11/08 10:20:47 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 # define CUB_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 1000
 # endif
-# include <stdio.h>
+
 # include <stdlib.h>
 # include <stdbool.h>
-# include <string.h>
 # include <unistd.h>
 # include <limits.h>
 # include <math.h>
 # include <fcntl.h>
 # include "../MLX42/.MLX42.h"
-# include <sys/time.h>
 
 # define TILE_SIZE 40
 # define H_S 864
@@ -85,7 +83,6 @@ typedef struct s_data
 	char			*so_texture;
 	char			*we_texture;
 	char			*ea_texture;
-	uint32_t		*txt;
 	t_ray			*ray;
 	t_player		player;
 	t_map			map;
@@ -98,46 +95,49 @@ typedef struct s_list
 	struct s_list	*next;
 }				t_list;
 
-uint32_t	rgb(t_color r, t_color g, t_color b, t_color a);
-void		load_wind(t_data *data);
-void		move_player(void *ptr);
-double		norm_angle(double angle);
-void		cast_rays(t_data *data);
-double		calcul_dis(t_data *data, t_vector pos);
-void		first_point_h(t_data *data, int i);
-void		first_point_v(t_data *data, int i);
-void		get_derictions(t_data *data, int i);
-bool		check_wall(t_data *data, double x, double y);
-void		draw_3d(t_data *data);
-uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
+/*========================= mlx_utils =========================*/
+
 void		put_pixel(mlx_image_t *img, double x, double y, double color);
 uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
+uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y);
+uint32_t	rgb(t_color r, t_color g, t_color b, t_color a);
+bool		check_wall(t_data *data, double x, double y);
+double		calcul_dis(t_data *data, t_vector pos);
+void		get_derictions(t_data *data, int i);
+void		first_point_h(t_data *data, int i);
+void		first_point_v(t_data *data, int i);
 void		get_texture(t_data *data, int i);
+double		norm_angle(double angle);
+void		load_wind(t_data *data);
+void		move_player(void *ptr);
+void		cast_rays(t_data *data);
+void		draw_3d(t_data *data);
 
-//get_line
+/*========================= get_next_line =========================*/
 
-char		*get_line(int fd);
-char		*line(char *s);
-char		*rest_of_str(char *s);
 char		*read_line(char *s, int fd);
 size_t		ft_countlen(const char *s);
+char		*rest_of_str(char *s);
 int			ft_newline(char *s);
+char		*get_line(int fd);
+char		*line(char *s);
 
-//parsin
+/*========================= parsing =========================*/
 
-void		parsing(t_data *data, char *av);
-void		handl_error_missage(char *missage);
-int			is_textur_or_f_c(char *line);
-void		handle_start_last_of_map(char *line);
 void		ft_copy_map(char **map, t_data *data, int start_index, int size);
 void		add_textur_or_f_c(char *line, t_data *data, int *elem);
-void		add_map(t_data *data, int i);
-int			ft_skipe_spaces(char *line, int i);
-int			is_player(char c);
-int			is_map_member(char c);
 void		get_color(char *line, t_data *data, int type);
+void		handle_start_last_of_map(char *line);
+void		handl_error_missage(char *missage);
+int			ft_skipe_spaces(char *line, int i);
+void		parsing(t_data *data, char *av);
+int			is_textur_or_f_c(char *line);
+void		add_map(t_data *data, int i);
+int			is_map_member(char c);
+int			is_player(char c);
 
-//utils
+/*========================= utils =========================*/
+
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);

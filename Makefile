@@ -80,6 +80,10 @@ all :  $(NAME)
 MANDATORY/%.o : MANDATORY/%.c MANDATORY/cub.h
 	$(CC)  $(FLAGS) -c  $<   -o $@
 
+BONUS/%.o : BONUS/%.c BONUS/cub_bonus.h
+	$(CC) $(FLAGS) -c $< -o $@
+
+
 $(NAME) : $(OBJ)
 	$(CC) $(MLXFLAGS) $(SRC) -o $(NAME) 
 
@@ -88,8 +92,6 @@ bonus : $(NAME_BONUS)
 $(NAME_BONUS) : $(OBJ_BONUS)
 	$(CC) $(MLXFLAGS) $(SRC_BONUS) -o $(NAME_BONUS)
 
-BONUS/%.o : BONUS/%.c BONUS/cub_bonus.h
-	$(CC) $(FLAGS) -c $< -o $@
 
 clean :
 	$(RM) $(OBJ)  $(OBJ_BONUS)

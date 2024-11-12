@@ -6,7 +6,7 @@
 /*   By: ezahiri <ezahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:03:00 by ezahiri           #+#    #+#             */
-/*   Updated: 2024/11/07 15:48:56 by ezahiri          ###   ########.fr       */
+/*   Updated: 2024/11/08 10:12:49 by ezahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,10 @@ void	init_data(t_data *data)
 		handl_error_missage("Error\nInvalid texture path");
 }
 
-void	f(void)
-{
-	system("leaks cub3D_bonus");
-}
-
 int	main(int ac, char **av)
 {
 	t_data	data;
 
-	atexit(f);
 	get_add(&data);
 	if (ac != 2)
 	{
